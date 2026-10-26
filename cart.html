@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#174733" />
+    <title>سلة التسوق | LuLu</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Tahoma, Arial, sans-serif;
+        color: #1c2420;
+        background: #f6faef;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+      }
+
+      button,
+      a {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .topbar {
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px max(16px, calc((100vw - 1180px) / 2));
+        background: #174733;
+        color: #fff;
+      }
+
+      .logo {
+        color: inherit;
+        font-family: Georgia, serif;
+        font-size: 29px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: -2px;
+        text-decoration: none;
+      }
+
+      .cart-header-count {
+        padding: 6px 10px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.13);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .page {
+        width: min(100% - 32px, 1000px);
+        margin: 26px auto 50px;
+      }
+
+      .page-heading {
+        margin: 0 0 5px;
+        font-size: clamp(23px, 4vw, 32px);
+      }
+
+      .page-intro {
+        margin: 0 0 22px;
+        color: #717975;
+        font-size: 14px;
+      }
+
+      .cart-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 285px;
+        align-items: start;
+        gap: 18px;
+      }
+
+      .cart-items,
+      .summary {
+        border: 1px solid #e5eae6;
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      .cart-items {
+        overflow: hidden;
+      }
+
+      .category-section + .category-section {
+        border-top: 1px solid #e9edeb;
+      }
+
+      .category-heading {
+        margin: 0;
+        padding: 15px 17px;
+        background: #f4f8f4;
+        color: #23543b;
+        font-size: 16px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 84px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .cart-item + .cart-item {
+        border-top: 1px solid #edf0ee;
+      }
+
+      .item-image {
+        width: 84px;
+        height: 84px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid #eef0ee;
+        border-radius: 10px;
+        background: #fafbfa;
+      }
+
+      .item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .item-image .no-image {
+        color: #858d88;
+        font-size: 12px;
+      }
+
+      .item-brand {
+        color: #168753;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .item-title {
+        margin: 5px 0 7px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .item-unit-price,
+      .item-total {
+        direction: ltr;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .item-unit-price {
+        color: #616a65;
+        font-size: 12px;
+      }
+
+      .item-total {
+        margin-top: 7px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .item-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .item-quantity {
+        min-height: 31px;
+        display: inline-grid;
+        grid-template-columns: 31px 34px 31px;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #dce2dd;
+        border-radius: 8px;
+      }
+
+      .item-quantity button,
+      .remove-item {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .item-quantity button {
+        width: 30px;
+        height: 29px;
+        color: #23543b;
+        font-size: 17px;
+      }
+
+      .item-quantity output {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .remove-item {
+        padding: 5px 0;
+        color: #bd3c42;
+        font-size: 12px;
+      }
+
+      .summary {
+        position: sticky;
+        top: 14px;
+        padding: 18px;
+      }
+
+      .summary h2 {
+        margin: 0 0 14px;
+        font-size: 18px;
+      }
+
+      .summary-line,
+      .category-total {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: #58615c;
+        font-size: 13px;
+      }
+
+      .category-total {
+        padding: 8px 0;
+        border-bottom: 1px solid #edf0ee;
+      }
+
+      .summary-total {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 16px;
+        color: #151a17;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .summary-note {
+        margin: 12px 0 0;
+        color: #737d76;
+        font-size: 11px;
+        line-height: 1.7;
+      }
+
+      .summary-actions {
+        display: grid;
+        gap: 9px;
+        margin-top: 18px;
+      }
+
+      .continue-button,
+      .clear-button {
+        min-height: 42px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .continue-button {
+        background: #00a854;
+        color: #fff;
+      }
+
+      .continue-button.secondary {
+        background: #eef5ef;
+        color: #23543b;
+      }
+
+      .clear-button {
+        background: #f5f5f3;
+        color: #bd3c42;
+      }
+
+      .empty-state {
+        padding: 38px 18px;
+        color: #6e7771;
+        text-align: center;
+      }
+
+      .empty-state a {
+        display: inline-block;
+        margin-top: 12px;
+        color: #078f4d;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .toast {
+        position: fixed;
+        right: 50%;
+        bottom: 20px;
+        z-index: 2;
+        padding: 10px 16px;
+        border-radius: 9px;
+        background: #174a37;
+        color: #fff;
+        font-size: 13px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(50%, 10px);
+        transition: opacity 160ms ease, transform 160ms ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translate(50%, 0);
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          width: min(100% - 24px, 520px);
+          margin-top: 20px;
+        }
+
+        .cart-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .summary {
+          position: static;
+          grid-row: 1;
+        }
+
+        .cart-item {
+          grid-template-columns: 68px minmax(0, 1fr);
+          gap: 11px;
+          padding: 12px;
+        }
+
+        .item-image {
+          width: 68px;
+          height: 68px;
+          grid-row: span 2;
+        }
+
+        .item-title {
+          font-size: 13px;
+        }
+
+        .item-total {
+          margin-top: 5px;
+        }
+
+        .item-quantity {
+          grid-template-columns: 28px 30px 28px;
+        }
+
+        .item-quantity button {
+          width: 27px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .item-actions {
+          flex-wrap: wrap;
+          gap: 7px;
+        }
+
+        .summary {
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="logo" href="./1index.html" aria-label="العودة إلى المتجر">LuLu</a>
+      <span class="cart-header-count" id="header-count">السلة</span>
+    </header>
+
+    <main class="page">
+      <h1 class="page-heading">سلة التسوق</h1>
+      <p class="page-intro">راجع جميع المنتجات وكمياتها قبل متابعة الطلب.</p>
+
+      <div class="cart-layout">
+        <section class="cart-items" id="cart-items" aria-label="المنتجات في السلة" aria-live="polite"></section>
+        <aside class="summary" aria-label="ملخص الطلب">
+          <h2>ملخص السلة</h2>
+          <div id="category-totals"></div>
+          <div class="summary-total">
+            <span>الإجمالي</span>
+            <strong id="grand-total">KWD 0.000</strong>
+          </div>
+          <p class="summary-note">الإجمالي محسوب حسب سعر كل منتج والكمية المختارة. لا يشمل رسوم توصيل غير محددة.</p>
+          <div class="summary-actions">
+            <a class="continue-button" href="./step2.html">إتمام الطلب</a>
+            <a class="continue-button secondary" href="./1index.html#products">متابعة التسوق</a>
+            <button class="clear-button" id="clear-cart" type="button">إفراغ السلة</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./js/cart.js"></script>
+    <script>
+      const itemContainer = document.getElementById("cart-items");
+      const categoryTotals = document.getElementById("category-totals");
+      const grandTotal = document.getElementById("grand-total");
+      const headerCount = document.getElementById("header-count");
+      const toast = document.getElementById("toast");
+      let toastTimer;
+
+      function formatKwd(fils) {
+        return `KWD ${window.productCart.formatFils(fils)}`;
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 1800);
+      }
+
+      function makeElement(tag, className, text) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function renderCart() {
+        const items = window.productCart.getItems();
+        const count = window.productCart.getCount(items);
+        headerCount.textContent = `السلة (${count})`;
+        itemContainer.replaceChildren();
+        categoryTotals.replaceChildren();
+
+        if (items.length === 0) {
+          itemContainer.append(
+            makeElement("p", "empty-state", "سلتك فارغة حاليًا.")
+          );
+          const link = makeElement("a", "", "تسوق المنتجات");
+          link.href = "./1index.html#products";
+          itemContainer.querySelector(".empty-state").append(link);
+          grandTotal.textContent = formatKwd(0);
+          return;
+        }
+
+        const categoryLabels = {
+          chicken: "الدجاج الطازج",
+          beef: "لحوم الأبقار والعجول",
+          dairy: "منتجات الألبان",
+          eggs: "البيض",
+        };
+        const categoryOrder = ["chicken", "beef", "dairy", "eggs"];
+        const totals = Object.fromEntries(categoryOrder.map((category) => [category, 0]));
+        const categoryHasItems = Object.fromEntries(categoryOrder.map((category) => [category, false]));
+        const totalInFils = window.productCart.getTotalInFils(items);
+
+        for (const item of items) {
+          const unitPriceInFils = window.productCart.getPriceInFils(item);
+          const itemTotalInFils = window.productCart.getItemTotalInFils(item);
+          totals[item.category] += itemTotalInFils;
+          categoryHasItems[item.category] = true;
+
+          let group = itemContainer.querySelector(`[data-category="${item.category}"]`);
+          if (!group) {
+            group = makeElement("section", "category-section");
+            group.dataset.category = item.category;
+            group.append(makeElement("h2", "category-heading", categoryLabels[item.category]));
+            itemContainer.append(group);
+          }
+
+          const row = makeElement("article", "cart-item");
+          const imageFrame = makeElement("div", "item-image");
+          if (item.image) {
+            const image = makeElement("img");
+            image.src = item.image;
+            image.alt = item.title;
+            image.loading = "lazy";
+            imageFrame.append(image);
+          } else {
+            imageFrame.append(makeElement("span", "no-image", "بدون صورة"));
+          }
+
+          const details = makeElement("div", "item-details");
+          details.append(makeElement("span", "item-brand", item.brand));
+          details.append(makeElement("h3", "item-title", item.title));
+          details.append(makeElement("div", "item-unit-price", `سعر القطعة: ${formatKwd(unitPriceInFils)}`));
+          const actions = makeElement("div", "item-actions");
+          const quantityControl = makeElement("div", "item-quantity");
+          quantityControl.setAttribute("aria-label", `كمية ${item.title}`);
+          const decrease = makeElement("button", "", "−");
+          decrease.type = "button";
+          decrease.dataset.action = "decrease";
+          decrease.dataset.id = item.id;
+          decrease.setAttribute("aria-label", `تقليل كمية ${item.title}`);
+          const quantity = makeElement("output", "", String(item.quantity));
+          const increase = makeElement("button", "", "+");
+          increase.type = "button";
+          increase.dataset.action = "increase";
+          increase.dataset.id = item.id;
+          increase.setAttribute("aria-label", `زيادة كمية ${item.title}`);
+          quantityControl.append(decrease, quantity, increase);
+          const remove = makeElement("button", "remove-item", "حذف");
+          remove.type = "button";
+          remove.dataset.action = "remove";
+          remove.dataset.id = item.id;
+          actions.append(quantityControl, remove);
+          details.append(actions);
+
+          const priceColumn = makeElement("div", "item-price-column");
+          priceColumn.append(makeElement("div", "item-total", formatKwd(itemTotalInFils)));
+          row.append(imageFrame, details, priceColumn);
+          group.append(row);
+        }
+
+        for (const category of categoryOrder) {
+          if (!categoryHasItems[category]) continue;
+          const line = makeElement("div", "category-total");
+          line.append(makeElement("span", "", `إجمالي ${categoryLabels[category]}`));
+          line.append(makeElement("strong", "", formatKwd(totals[category])));
+          categoryTotals.append(line);
+        }
+        grandTotal.textContent = formatKwd(totalInFils);
+      }
+
+      itemContainer.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+
+        try {
+          const items = window.productCart.getItems();
+          const item = items.find((entry) => entry.id === button.dataset.id);
+          if (!item) throw new Error("لم يتم العثور على المنتج في السلة");
+          if (button.dataset.action === "remove") {
+            window.productCart.setQuantity(item.id, 0);
+            showToast("تم حذف المنتج من السلة");
+          } else {
+            const adjustment = button.dataset.action === "increase" ? 1 : -1;
+            window.productCart.setQuantity(item.id, item.quantity + adjustment);
+          }
+          renderCart();
+        } catch (error) {
+          showToast(error.message || "تعذر تحديث السلة");
+        }
+      });
+
+      document.getElementById("clear-cart").addEventListener("click", () => {
+        try {
+          window.productCart.clear();
+          renderCart();
+          showToast("تم إفراغ السلة");
+        } catch (error) {
+          showToast(error.message || "تعذر إفراغ السلة");
+        }
+      });
+
+      try {
+        renderCart();
+      } catch (error) {
+        itemContainer.textContent = error.message || "تعذر تحميل السلة. أعد تحميل الصفحة.";
+        showToast("تعذر تحميل السلة");
+      }
+
+      function refreshCart() {
+        try {
+          renderCart();
+        } catch (error) {
+          itemContainer.textContent = error.message || "تعذر تحديث السلة.";
+          showToast("تعذر تحديث السلة");
+        }
+      }
+
+      window.addEventListener("ku-ku-cart-change", refreshCart);
+      window.addEventListener("pageshow", refreshCart);
+      window.addEventListener("storage", (event) => {
+        if (event.key === "ku-ku-cart-items" || event.key === "ku-ku-cart-count") {
+          refreshCart();
+        }
+      });
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>

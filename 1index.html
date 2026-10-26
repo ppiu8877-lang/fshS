@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="تسوق الدجاج الطازج والمجمد ومنتجات الدواجن في الكويت."
+    />
+    <meta name="theme-color" content="#174733" />
+    <title>دجاج الكويت | تسوق منتجات الدواجن</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --green: #078f4d;
+        --green-dark: #174733;
+        --green-pale: #e8f6ef;
+        --ink: #1c2420;
+        --muted: #7b817e;
+        --line: #e9ecea;
+        --page: #fff;
+        --yellow: #ffcc00;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: Tahoma, Arial, sans-serif;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      button,
+      a,
+      select {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .topbar {
+        min-height: 82px;
+        padding: 12px clamp(16px, 3vw, 42px);
+        display: grid;
+        grid-template-columns: auto minmax(180px, 1fr) auto auto;
+        align-items: center;
+        gap: 30px;
+        color: #fff;
+        background: var(--green-dark);
+      }
+
+      .logo {
+        color: white;
+        text-decoration: none;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 31px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: -2px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        padding: 0 16px;
+        border-radius: 9px;
+        background: #fff;
+        color: #66716b;
+      }
+
+      .search input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        color: var(--ink);
+        background: transparent;
+        font-size: 14px;
+      }
+
+      .search input::placeholder {
+        color: #929995;
+      }
+
+      .search-icon {
+        width: 21px;
+        height: 21px;
+        flex: 0 0 auto;
+      }
+
+      .header-actions,
+      .locale {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .header-button {
+        min-height: 42px;
+        padding: 0 16px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 9px;
+        background: transparent;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .topbar .header-actions .header-button:not(.primary) {
+        display: none;
+      }
+
+      .header-button.primary {
+        border-color: #00ae60;
+        background: #00ae60;
+      }
+
+      .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+      }
+
+      .icon-button svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .locale {
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .flag {
+        font-size: 19px;
+      }
+
+      .subnav {
+        min-height: 58px;
+        padding: 8px clamp(16px, 3vw, 42px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        border-bottom: 1px solid #e7e7e7;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+
+      .subnav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(15px, 2vw, 32px);
+      }
+
+      .subnav a {
+        color: #222;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .subnav .all-categories {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: var(--green-pale);
+        color: var(--green);
+      }
+
+      .deals {
+        padding: 7px 12px;
+        border-radius: 8px;
+        background: #fff0f0;
+        color: #c62828 !important;
+      }
+
+      .promo {
+        width: min(218px, 24vw);
+        height: 41px;
+        margin: 7px clamp(16px, 2.3vw, 36px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border-radius: 8px;
+        background: #f0f2f2;
+        color: #111;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .promo strong {
+        font-size: 24px;
+      }
+
+      .promo-code {
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: #4695e3;
+        color: #fff;
+        font-size: 14px;
+      }
+
+      .breadcrumb {
+        padding: 22px clamp(20px, 3vw, 46px) 32px;
+        color: #454b48;
+        font-size: 13px;
+      }
+
+      .catalog {
+        padding: 0 clamp(18px, 2.3vw, 36px) 50px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+        gap: 20px;
+      }
+
+      .filters {
+        display: none;
+      }
+
+      .catalog-main {
+        min-width: 0;
+      }
+
+      .toolbar {
+        min-height: 52px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+
+      .sort-label {
+        flex: 0 0 auto;
+        margin-left: 8px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .sort-select {
+        flex: 0 0 190px;
+        min-height: 38px;
+        margin-left: auto;
+        padding: 0 12px;
+        border: 1px solid #d6dbd8;
+        border-radius: 9px;
+        background: #fff;
+        color: #333;
+      }
+
+      .filter-chip {
+        flex: 0 0 auto;
+        min-height: 36px;
+        padding: 0 14px;
+        border: 1px solid #333;
+        border-radius: 22px;
+        background: #fff;
+        color: #333;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .filter-chip.active {
+        border-color: var(--green);
+        background: #00a854;
+        color: #fff;
+      }
+
+      .clear-filters {
+        flex: 0 0 auto;
+        padding: 8px;
+        border: 0;
+        background: transparent;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product-card {
+        position: relative;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid #ebedec;
+        border-radius: 11px;
+        background: #fff;
+        transition: box-shadow 160ms ease, transform 160ms ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(20, 60, 40, 0.1);
+      }
+
+      .product-image {
+        position: relative;
+        height: clamp(170px, 17vw, 218px);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 50% 78%, rgba(20, 33, 26, 0.13), transparent 43%),
+          #f7f7f7;
+      }
+
+      .product-source-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-source-image.isolated {
+        object-fit: contain;
+        background: #fff;
+      }
+
+      .discount {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        padding: 7px 10px;
+        border-radius: 0 0 8px 0;
+        background: #00a854;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        direction: ltr;
+      }
+
+      .favorite {
+        position: absolute;
+        z-index: 2;
+        top: 8px;
+        left: 8px;
+        border: 0;
+        background: transparent;
+        color: #dce0df;
+        font-size: 27px;
+        line-height: 1;
+      }
+
+      .favorite.selected {
+        color: #e54d62;
+      }
+
+      .product-image-link {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+
+      .pack {
+        position: relative;
+        width: 72%;
+        height: 76%;
+        max-width: 165px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        border: 5px solid #f4dc62;
+        border-radius: 18px 18px 23px 23px;
+        background: linear-gradient(155deg, #fff 4%, #ebf7e8 42%, #b5dba8 100%);
+        box-shadow: 0 8px 13px rgba(0, 0, 0, 0.16);
+        transform: rotate(-2deg);
+      }
+
+      .pack.blue {
+        border-color: #0a68c4;
+        background: linear-gradient(155deg, #dff5ff 5%, #68b8e7 48%, #f0f7fc 100%);
+        transform: rotate(2deg);
+      }
+
+      .pack.green {
+        border-color: #e9df70;
+        background: linear-gradient(155deg, #fff7a7 0%, #b2d75a 45%, #f3f6dc 100%);
+      }
+
+      .pack.tray {
+        width: 88%;
+        height: 57%;
+        max-width: 185px;
+        border: 5px solid rgba(255, 255, 255, 0.85);
+        border-radius: 14px;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(210, 235, 246, 0.74));
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), inset 0 0 0 2px rgba(40, 90, 110, 0.12);
+        transform: rotate(-3deg);
+      }
+
+      .pack.tray .pack-brand {
+        margin-top: 6%;
+        padding: 3px;
+        font-size: 10px;
+      }
+
+      .pack.tray .pack-subtitle {
+        margin-top: 2px;
+        font-size: 7px;
+      }
+
+      .pack.tray .chicken-art {
+        width: 74%;
+        height: 39%;
+        margin-top: 4%;
+      }
+
+      .pack.yellow {
+        width: 68%;
+        height: 79%;
+        border: 7px solid #ebd400;
+        border-radius: 48% 48% 35% 35%;
+        background: linear-gradient(155deg, #fffbb0, #f2dc17 65%, #fbf5bc);
+        transform: rotate(3deg);
+      }
+
+      .pack.bag {
+        width: 61%;
+        height: 82%;
+        border: 4px solid #e6c926;
+        border-radius: 48% 48% 18% 18%;
+        background: linear-gradient(160deg, #fff, #fbef9d 58%, #f7df36);
+        clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+      }
+
+      .pack.bag .pack-brand {
+        margin-top: 22%;
+      }
+
+      .food-photo {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: #25332b;
+      }
+
+      .food-photo.roast {
+        background:
+          radial-gradient(ellipse at 52% 57%, transparent 0 34%, rgba(0, 0, 0, 0.44) 35% 48%, transparent 49%),
+          radial-gradient(ellipse at 50% 52%, #b8732f 0 31%, #432d1e 32% 42%, #18221e 43%);
+      }
+
+      .food-photo.kebab {
+        background:
+          radial-gradient(ellipse at 50% 56%, #4f3927 0 38%, #17211d 39% 53%, transparent 54%),
+          linear-gradient(145deg, #192520, #53604d 54%, #171d19);
+      }
+
+      .food-photo.burger {
+        background:
+          radial-gradient(ellipse at 50% 60%, #f3a04d 0 17%, #873f1c 18% 20%, transparent 21%),
+          radial-gradient(ellipse at 50% 43%, #f7a649 0 15%, #b4431d 16% 21%, transparent 22%),
+          repeating-linear-gradient(0deg, rgba(255, 155, 66, 0.28) 0 2px, transparent 2px 5px),
+          #4d2521;
+      }
+
+      .food-photo.marinade {
+        background:
+          radial-gradient(ellipse at 50% 54%, #7e5733 0 40%, #17221b 41% 52%, transparent 53%),
+          linear-gradient(135deg, #425240, #111b17);
+      }
+
+      .food-photo.fresh-tray {
+        background:
+          radial-gradient(ellipse at center, rgba(255, 255, 255, 0.78) 0 41%, transparent 42%),
+          linear-gradient(145deg, #eef5f2, #d9e7df 56%, #fbfbf8);
+      }
+
+      .food-cut {
+        position: absolute;
+        display: block;
+        width: 42%;
+        height: 29%;
+        border: 1px solid rgba(109, 48, 17, 0.55);
+        border-radius: 48% 38% 50% 42%;
+        background:
+          repeating-linear-gradient(118deg, transparent 0 7px, rgba(111, 47, 17, 0.24) 8px 10px, transparent 11px 16px),
+          radial-gradient(ellipse at 30% 24%, #ffd178 0 8%, transparent 31%),
+          linear-gradient(145deg, #fbb84d, #cf5d1e 63%, #773418);
+        box-shadow: inset -5px -6px 9px rgba(61, 29, 12, 0.32), 0 5px 8px rgba(0, 0, 0, 0.32);
+        transform: rotate(-18deg);
+      }
+
+      .food-cut:nth-child(1) {
+        top: 22%;
+        left: 18%;
+      }
+
+      .food-cut:nth-child(2) {
+        top: 43%;
+        left: 43%;
+        transform: rotate(25deg);
+      }
+
+      .food-cut:nth-child(3) {
+        top: 27%;
+        right: 14%;
+        transform: rotate(65deg);
+      }
+
+      .food-cut:nth-child(4) {
+        bottom: 16%;
+        left: 20%;
+        transform: rotate(40deg);
+      }
+
+      .food-photo.kebab .food-cut {
+        width: 22%;
+        height: 48%;
+        border-radius: 42%;
+        background:
+          repeating-linear-gradient(0deg, transparent 0 7px, rgba(113, 47, 17, 0.38) 8px 10px),
+          linear-gradient(100deg, #ffd27e, #c75f27 68%, #7c321d);
+      }
+
+      .food-photo.kebab .food-cut:nth-child(1) {
+        top: 24%;
+        left: 20%;
+        transform: rotate(24deg);
+      }
+
+      .food-photo.kebab .food-cut:nth-child(2) {
+        top: 18%;
+        left: 40%;
+        transform: rotate(-13deg);
+      }
+
+      .food-photo.kebab .food-cut:nth-child(3) {
+        top: 28%;
+        right: 18%;
+        transform: rotate(15deg);
+      }
+
+      .food-photo.kebab .food-cut:nth-child(4) {
+        display: none;
+      }
+
+      .food-photo.burger .food-cut {
+        width: 39%;
+        height: 34%;
+        border: 2px solid #f4a04b;
+        border-radius: 48%;
+        background:
+          repeating-linear-gradient(12deg, transparent 0 5px, rgba(255, 185, 94, 0.4) 6px 8px),
+          radial-gradient(ellipse, #ff9639, #d74415 68%, #732614);
+      }
+
+      .food-photo.burger .food-cut:nth-child(1) {
+        top: 24%;
+        left: 12%;
+      }
+
+      .food-photo.burger .food-cut:nth-child(2) {
+        top: 38%;
+        right: 12%;
+      }
+
+      .food-photo.burger .food-cut:nth-child(n + 3) {
+        display: none;
+      }
+
+      .food-photo.marinade .food-cut {
+        width: 33%;
+        height: 43%;
+        border-radius: 45% 45% 38% 38%;
+      }
+
+      .food-photo.marinade .food-cut:nth-child(1) {
+        top: 23%;
+        left: 17%;
+        transform: rotate(-26deg);
+      }
+
+      .food-photo.marinade .food-cut:nth-child(2) {
+        top: 27%;
+        left: 42%;
+        transform: rotate(12deg);
+      }
+
+      .food-photo.marinade .food-cut:nth-child(3) {
+        top: 48%;
+        right: 12%;
+        transform: rotate(46deg);
+      }
+
+      .food-photo.fresh-tray .food-cut {
+        width: 37%;
+        height: 26%;
+        background:
+          radial-gradient(ellipse at 28% 22%, #fff0dd 0 10%, transparent 30%),
+          linear-gradient(145deg, #ffe7ce, #e1b995 65%, #cda27f);
+        box-shadow: inset -4px -4px 7px rgba(105, 70, 46, 0.14), 0 3px 6px rgba(0, 0, 0, 0.16);
+      }
+
+      .food-caption {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        padding: 4px 7px;
+        border-radius: 4px;
+        background: rgba(18, 29, 23, 0.64);
+        color: white;
+        font-size: 9px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .pack-brand {
+        position: relative;
+        z-index: 1;
+        width: 82%;
+        margin-top: 12%;
+        padding: 5px 3px;
+        border-radius: 4px;
+        background: #16823e;
+        color: white;
+        text-align: center;
+        font-size: clamp(11px, 1vw, 15px);
+        font-weight: 800;
+        line-height: 1.25;
+      }
+
+      .pack.blue .pack-brand {
+        background: #0863aa;
+      }
+
+      .pack-subtitle {
+        position: relative;
+        z-index: 1;
+        margin-top: 3px;
+        color: #fff;
+        font-size: 8px;
+        font-weight: 700;
+        text-shadow: 0 1px 2px #315427;
+      }
+
+      .chicken-art {
+        position: relative;
+        width: 65%;
+        height: 44%;
+        margin-top: 7%;
+        border-radius: 50% 45% 48% 44%;
+        background: linear-gradient(145deg, #ffe7c8, #d99559 68%, #b76f3d);
+        box-shadow: inset -7px -7px 10px rgba(112, 54, 28, 0.18);
+        transform: rotate(-10deg);
+      }
+
+      .chicken-art::before,
+      .chicken-art::after {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        background: #f0bd85;
+      }
+
+      .chicken-art::before {
+        width: 35%;
+        height: 43%;
+        top: -10%;
+        right: 10%;
+      }
+
+      .chicken-art::after {
+        width: 35%;
+        height: 35%;
+        bottom: -3%;
+        left: 8%;
+      }
+
+      .pack-whole .chicken-art {
+        width: 64%;
+        height: 51%;
+        border-radius: 48% 48% 42% 42%;
+        transform: rotate(2deg);
+      }
+
+      .pack-whole .chicken-art::before {
+        top: -17%;
+        right: 32%;
+        width: 34%;
+        height: 29%;
+      }
+
+      .pack-seal {
+        position: absolute;
+        z-index: 1;
+        right: 6px;
+        bottom: 8px;
+        left: 6px;
+        padding: 3px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.88);
+        color: #315441;
+        text-align: center;
+        font-size: 7px;
+        font-weight: 700;
+      }
+
+      .product-image:has(.food-photo) .favorite {
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+      }
+
+      .product-image:has(.food-photo) .favorite.selected {
+        color: #ee5262;
+      }
+
+      .add-button {
+        position: absolute;
+        z-index: 3;
+        right: 8px;
+        bottom: 8px;
+        width: 37px;
+        height: 37px;
+        border: 0;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #06bb6b, #008943);
+        color: white;
+        font-size: 27px;
+        line-height: 1;
+        box-shadow: 0 3px 8px rgba(0, 130, 64, 0.22);
+      }
+
+      .product-info {
+        min-height: 150px;
+        padding: 12px 12px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-tag {
+        margin-bottom: 12px;
+        padding: 5px 9px;
+        border-radius: 7px;
+        background: #ecf8f3;
+        color: #315441;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .product-title {
+        min-height: 42px;
+        margin: 0 0 5px;
+        color: #252a27;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.7;
+      }
+
+      .product-detail-link {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .product-detail-link:hover {
+        color: var(--green);
+      }
+
+      .price {
+        margin-top: auto;
+        color: #161b18;
+        font-size: 15px;
+        font-weight: 800;
+        direction: ltr;
+      }
+
+      .old-price {
+        margin-left: 7px;
+        color: #929795;
+        font-size: 13px;
+        font-weight: 400;
+        text-decoration: line-through;
+      }
+
+      .price .sale {
+        padding: 4px 7px;
+        border-radius: 0 0 10px 0;
+        background: var(--yellow);
+        box-shadow: 2px 3px 0 #171717;
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        padding: 42px 16px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .filters {
+        padding: 8px 0;
+      }
+
+      .filters-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 3px 16px;
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      .filter-search {
+        position: relative;
+        margin-bottom: 17px;
+      }
+
+      .filter-search input {
+        width: 100%;
+        height: 48px;
+        padding: 0 42px 0 14px;
+        border: 1px solid #ebedec;
+        border-radius: 9px;
+        outline-color: var(--green);
+      }
+
+      .filter-search svg {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        width: 21px;
+        height: 21px;
+        color: #313a35;
+      }
+
+      .filter-group {
+        padding: 14px 3px 17px;
+        border-bottom: 1px solid #f0f1f0;
+      }
+
+      .filter-group summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .filter-group summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .filter-group summary::after {
+        content: "⌃";
+        color: #354139;
+        font-size: 19px;
+      }
+
+      .filter-group:not([open]) .filter-options {
+        display: none;
+      }
+
+      .filter-options {
+        display: grid;
+        gap: 13px;
+        padding-top: 15px;
+      }
+
+      .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #313632;
+        font-size: 14px;
+      }
+
+      .filter-option input {
+        width: 19px;
+        height: 19px;
+        margin: 0;
+        accent-color: var(--green);
+      }
+
+      .filter-option span {
+        color: #929895;
+      }
+
+      .show-all {
+        margin-top: 1px;
+        border: 0;
+        background: transparent;
+        color: var(--green);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .cart-count {
+        display: inline-grid;
+        min-width: 19px;
+        height: 19px;
+        margin-right: 4px;
+        place-items: center;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 11px;
+      }
+
+      .toast {
+        position: fixed;
+        z-index: 10;
+        right: 50%;
+        bottom: 22px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        background: var(--green-dark);
+        color: white;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(50%, 12px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translate(50%, 0);
+      }
+
+      .floating-action {
+        position: fixed;
+        z-index: 8;
+        bottom: 16px;
+        display: grid;
+        width: 52px;
+        height: 52px;
+        padding: 11px;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        color: white;
+        box-shadow: 0 4px 12px rgba(20, 60, 40, 0.2);
+      }
+
+      .floating-action svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .chat-action {
+        right: 16px;
+        background: #06a957;
+      }
+
+      .top-action {
+        left: 16px;
+        background: #06a957;
+      }
+
+      @media (max-width: 1160px) {
+        .catalog {
+          grid-template-columns: minmax(0, 1fr) 260px;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .topbar {
+          gap: 17px;
+        }
+
+        .subnav-links {
+          gap: 17px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .topbar {
+          grid-template-columns: auto minmax(120px, 1fr) auto;
+          gap: 12px;
+          padding: 12px 16px;
+        }
+
+        .topbar > .locale {
+          display: none;
+        }
+
+        .logo {
+          font-size: 27px;
+        }
+
+        .header-actions {
+          gap: 4px;
+        }
+
+        .header-button {
+          padding: 0 10px;
+          font-size: 12px;
+        }
+
+        .subnav {
+          overflow-x: auto;
+        }
+
+        .subnav-links {
+          gap: 18px;
+        }
+
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+
+        .filters {
+          grid-row: 1;
+        }
+
+        .filters-heading {
+          padding-bottom: 9px;
+        }
+
+        .filter-groups {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0 16px;
+        }
+
+        .filter-group {
+          padding: 12px 3px;
+        }
+
+        .catalog-main {
+          grid-row: 2;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .promo {
+          margin-top: 10px;
+        }
+
+        .breadcrumb {
+          padding-bottom: 20px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar {
+          min-height: 68px;
+          grid-template-columns: auto minmax(0, 1fr) auto;
+          gap: 9px;
+          padding: 10px 12px;
+        }
+
+        @supports not selector(:has(*)) {
+          .food-photo ~ .favorite {
+            color: white;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+          }
+        }
+
+        .header-button.primary {
+          min-height: 38px;
+          padding: 0 9px;
+          font-size: 11px;
+        }
+
+        .logo {
+          font-size: 23px;
+        }
+
+        .search {
+          height: 42px;
+          padding: 0 10px;
+        }
+
+        .search input {
+          font-size: 12px;
+        }
+
+        .header-actions .icon-button:first-child {
+          display: none;
+        }
+
+        .subnav {
+          min-height: 50px;
+          padding: 7px 12px;
+        }
+
+        .subnav-links {
+          gap: 16px;
+        }
+
+        .subnav a {
+          font-size: 12px;
+        }
+
+        .promo {
+          width: 190px;
+          height: 37px;
+          margin: 8px 12px 0;
+        }
+
+        .breadcrumb {
+          padding: 16px 14px 19px;
+          font-size: 11px;
+        }
+
+        .catalog {
+          gap: 12px;
+          padding: 0 12px 36px;
+        }
+
+        .filter-groups {
+          grid-template-columns: 1fr 1fr;
+          gap: 0 9px;
+        }
+
+        .filter-group summary {
+          font-size: 13px;
+        }
+
+        .filter-options {
+          gap: 10px;
+        }
+
+        .filter-option {
+          font-size: 12px;
+        }
+
+        .toolbar {
+          min-height: 44px;
+          margin-bottom: 10px;
+          gap: 7px;
+        }
+
+        .sort-label {
+          font-size: 12px;
+        }
+
+        .sort-select {
+          flex-basis: 132px;
+          min-height: 34px;
+          font-size: 12px;
+        }
+
+        .filter-chip {
+          min-height: 32px;
+          padding: 0 11px;
+          font-size: 11px;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 9px;
+        }
+
+        .product-image {
+          height: clamp(155px, 54vw, 205px);
+        }
+
+        .pack {
+          width: 70%;
+          height: 73%;
+        }
+
+        .product-info {
+          min-height: 139px;
+          padding: 10px;
+        }
+
+        .brand-tag {
+          margin-bottom: 8px;
+          font-size: 10px;
+        }
+
+        .product-title {
+          min-height: 43px;
+          font-size: 12px;
+        }
+
+        .price {
+          font-size: 13px;
+        }
+
+        .old-price {
+          font-size: 11px;
+        }
+
+        .add-button {
+          width: 34px;
+          height: 34px;
+        }
+
+        .floating-action {
+          bottom: 12px;
+          width: 46px;
+          height: 46px;
+          padding: 10px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <a class="logo" href="#" aria-label="دجاج الكويت">Ku.Ku</a>
+        <label class="search" aria-label="البحث عن المنتجات">
+          <input id="main-search" type="search" placeholder="ابحث عن أي شيء..." />
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="7.2" stroke="currentColor" stroke-width="1.8" />
+            <path d="m16.2 16.2 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </label>
+        <div class="header-actions">
+          <a class="icon-button" href="./cart.html" aria-label="عرض سلة التسوق">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="20" r="1.3" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.3" fill="currentColor" />
+            </svg>
+            <span id="cart-count" class="cart-count" hidden>0</span>
+          </button>
+          <button class="header-button" type="button">دقايق</button>
+          <button class="header-button primary" type="button">هايبر ماركت</button>
+        </div>
+        <div class="locale"><span>AR</span><span class="flag" aria-label="الكويت">🇰🇼</span></div>
+      </div>
+      <nav class="subnav" aria-label="التصنيفات الرئيسية">
+        <div class="subnav-links">
+          <a class="all-categories" href="#products">كل التصنيفات <span aria-hidden="true">☰</span></a>
+          <a href="#products">بقالة</a>
+          <a href="#products">عروض المنتجات الطازجة</a>
+          <a href="#products">الإلكترونيات</a>
+          <a href="#products">عروض المنزل والمطبخ</a>
+          <a class="deals" href="#products">Deals <span aria-hidden="true">♨</span></a>
+        </div>
+        <div class="promo" aria-label="خصم 20 بالمئة باستخدام الرمز NEW">
+          <strong>20%</strong><span>off</span><span class="promo-code">NEW</span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="breadcrumb">الرئيسية&nbsp; / &nbsp;عروض المنتجات الطازجة&nbsp; / &nbsp;اللحوم والدواجن الطازجة&nbsp; / &nbsp;الدجاج الطازج</div>
+
+    <main class="catalog" id="products">
+      <section class="catalog-main" aria-label="منتجات المتجر">
+        <div class="toolbar" aria-label="ترتيب وتصفية المنتجات">
+          <span class="sort-label">ترتيب حسب:</span>
+          <select id="sort-select" class="sort-select" aria-label="ترتيب حسب">
+            <option value="recommended">الصلة</option>
+            <option value="price-asc">السعر: الأقل أولاً</option>
+            <option value="price-desc">السعر: الأعلى أولاً</option>
+          </select>
+          <button class="filter-chip" type="button" data-category="beef">لحوم الأبقار والعجول الطازجة (54)</button>
+          <button class="filter-chip" type="button" data-category="chicken">الدجاج الطازج (76)</button>
+          <button class="filter-chip" type="button" data-category="dairy">منتجات الألبان (6)</button>
+          <button class="filter-chip" type="button" data-category="eggs">البيض (10)</button>
+          <button class="filter-chip" type="button" data-category="other">اللحوم الطازجة الأخرى (1)</button>
+          <button class="filter-chip active" type="button" data-category="all">جميع المنتجات (76)</button>
+          <button id="clear-filters" class="clear-filters" type="button">حذف التصفية</button>
+        </div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <aside class="filters" aria-label="تصفية المنتجات">
+        <div class="filters-heading">تصفية <span aria-hidden="true">⌄</span></div>
+        <label class="filter-search">
+          <input id="filter-search" type="search" placeholder="بحث" aria-label="ابحث في الفلاتر" />
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="7.2" stroke="currentColor" stroke-width="1.8" />
+            <path d="m16.2 16.2 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </label>
+        <div class="filter-groups">
+          <details class="filter-group" open>
+            <summary>Product Type</summary>
+            <div class="filter-options">
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="marinated" data-type="chicken" /><span>Marinated Chicken (23)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="whole" data-type="chicken" /><span>دجاج كامل (20)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="breast" data-type="chicken" /><span>Chicken Breasts (6)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="pieces" data-type="chicken" /><span>قطع الدجاج (6)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="thighs" data-type="chicken" /><span>Chicken Thighs (6)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="beef-steak" data-type="type" /><span>Beef Steak (28)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="beef-cubes" data-type="type" /><span>Beef Cubes (7)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="minced-beef" data-type="type" /><span>Minced Beef (4)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="kofta" data-type="type" /><span>Kofta (3)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="beef-cuts" data-type="type" /><span>Beef Cuts (2)</span></label>
+              <label class="filter-option" data-filter-category="dairy"><input type="checkbox" value="dairy" data-type="dairy" /><span>منتجات الألبان (6)</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="eggs" data-type="eggs" /><span>البيض (10)</span></label>
+              <button class="show-all" type="button">عرض الكل</button>
+            </div>
+          </details>
+          <details class="filter-group" open>
+            <summary>Brand</summary>
+            <div class="filter-options">
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="اليوم" data-brand="Alyoum" /><span>اليوم (24)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="تنمية" data-brand="Tanmiah" /><span>تنمية (15)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="الطيبات" data-brand="Al Tayyibat" /><span>الطيبات (8)</span></label>
+              <label class="filter-option" data-filter-category="chicken"><input type="checkbox" value="Fresh" data-brand="Fresh" /><span>Fresh</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="Fresh" data-brand="Fresh" /><span>Fresh (41)</span></label>
+              <label class="filter-option" data-filter-category="beef"><input type="checkbox" value="Pryme" data-brand="Pryme" /><span>Pryme (9)</span></label>
+              <label class="filter-option" data-filter-category="dairy"><input type="checkbox" value="Almarai" data-brand="Almarai" /><span>Almarai</span></label>
+              <label class="filter-option" data-filter-category="dairy"><input type="checkbox" value="Fresh" data-brand="Fresh" /><span>Fresh</span></label>
+              <label class="filter-option" data-filter-category="dairy"><input type="checkbox" value="Kdcow" data-brand="Kdcow" /><span>Kdcow</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Only" data-brand="Only" /><span>Only Organic</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Naif" data-brand="Naif" /><span>Naif</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="LuLu PL" data-brand="LuLu PL" /><span>LuLu PL</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Golden Egg" data-brand="Golden Egg" /><span>Golden Egg</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Yasmin Farms" data-brand="Yasmin Farms" /><span>Yasmin Farms</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Farmer's Market" data-brand="Farmer's Market" /><span>Farmer's Market</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Kuwait" data-brand="Kuwait" /><span>Kuwait</span></label>
+              <label class="filter-option" data-filter-category="eggs"><input type="checkbox" value="Al Ghadeer" data-brand="Al Ghadeer" /><span>Al Ghadeer</span></label>
+            </div>
+          </details>
+          <details class="filter-group" data-group-category="beef">
+            <summary>Pack Quantity</summary>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" data-weight="200" /><span>200 g (1)</span></label>
+              <label class="filter-option"><input type="checkbox" data-weight="300" /><span>300 g (15)</span></label>
+              <label class="filter-option"><input type="checkbox" data-weight="500" /><span>500 g (29)</span></label>
+            </div>
+          </details>
+          <details class="filter-group" data-group-category="beef">
+            <summary>Meat Type</summary>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" data-meat-type="steak" /><span>Steak</span></label>
+              <label class="filter-option"><input type="checkbox" data-meat-type="minced" /><span>Minced beef</span></label>
+              <label class="filter-option"><input type="checkbox" data-meat-type="kofta" /><span>Kofta</span></label>
+            </div>
+          </details>
+          <details class="filter-group" data-group-category="beef">
+            <summary>Meat Cuts</summary>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" data-cut="sirloin" /><span>Sirloin</span></label>
+              <label class="filter-option"><input type="checkbox" data-cut="cubes" /><span>Beef cubes</span></label>
+              <label class="filter-option"><input type="checkbox" data-cut="bones" /><span>Meat bones</span></label>
+            </div>
+          </details>
+          <details class="filter-group">
+            <summary>العروض</summary>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" data-promo="discount" /><span>المنتجات المخفضة</span></label>
+            </div>
+          </details>
+          <details class="filter-group">
+            <summary>السعر</summary>
+            <div class="filter-options">
+              <label class="filter-option"><input type="checkbox" data-price="0-1" /><span>أقل من 1 د.ك</span></label>
+              <label class="filter-option"><input type="checkbox" data-price="1-2" /><span>من 1 إلى 2 د.ك</span></label>
+              <label class="filter-option"><input type="checkbox" data-price="2-5" /><span>أكثر من 2 د.ك</span></label>
+            </div>
+          </details>
+        </div>
+      </aside>
+    </main>
+    <button id="chat-action" class="floating-action chat-action" type="button" aria-label="تواصل معنا عبر واتساب">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 3.5a12 12 0 0 0-10.3 18.2L4.3 28l6.5-1.4A12 12 0 1 0 16 3.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+        <path d="M12 10.2c-.5-.8-1-.8-1.5-.8-.6 0-1.1.3-1.5.8-.5.5-1.7 1.7-1.7 4.1s1.8 4.8 2.1 5.1c.3.3 3.5 5.5 8.6 6.3 4.3.7 5.2-.7 6.1-1.8.8-1.1.8-2 .6-2.2-.2-.2-3.2-1.6-3.7-1.8-.5-.2-.9-.3-1.3.3-.4.6-1.5 1.8-1.8 2.2-.3.4-.6.5-1.1.2-.5-.2-2.3-.9-4.4-2.8-1.6-1.4-2.7-3.2-3-3.7-.3-.5 0-.8.2-1 .2-.2.5-.6.7-.8.2-.3.3-.5.5-.8.2-.3.1-.6 0-.8L12 10.2Z" fill="currentColor" transform="translate(2 -1) scale(.82)" />
+      </svg>
+    </button>
+    <button id="top-action" class="floating-action top-action" type="button" aria-label="العودة إلى أعلى الصفحة">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="m5 14 7-7 7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="./js/cart.js"></script>
+    <script src="./js/products.js"></script>
+    <script>
+      const products = window.storeProducts;
+
+      const categoryNames = {
+        all: "جميع المنتجات",
+        beef: "لحوم الأبقار والعجول الطازجة",
+        chicken: "الدجاج الطازج",
+        dairy: "منتجات الألبان",
+        eggs: "البيض",
+        other: "اللحوم الطازجة الأخرى",
+      };
+      const productCounts = products.reduce((counts, product) => {
+        const category = product.category || "chicken";
+        counts[category] = (counts[category] || 0) + 1;
+        counts.all += 1;
+        return counts;
+      }, { all: 0 });
+      document.querySelectorAll(".filter-chip[data-category]").forEach((chip) => {
+        const category = chip.dataset.category;
+        chip.textContent = `${categoryNames[category]} (${productCounts[category] || 0})`;
+      });
+
+      const productGrid = document.getElementById("product-grid");
+      const mainSearch = document.getElementById("main-search");
+      const filterSearch = document.getElementById("filter-search");
+      const sortSelect = document.getElementById("sort-select");
+      const toast = document.getElementById("toast");
+      let activeCategory = "all";
+      let cartCount = 0;
+      let toastTimer;
+
+      function refreshCartCount() {
+        const items = window.productCart.getItems();
+        cartCount = window.productCart.getCount(items);
+        const cartBadge = document.getElementById("cart-count");
+        cartBadge.hidden = cartCount === 0;
+        cartBadge.textContent = cartCount;
+      }
+
+      try {
+        refreshCartCount();
+      } catch (error) {
+        showToast("تعذر تحميل عدد المنتجات في السلة");
+      }
+      window.addEventListener("ku-ku-cart-change", () => {
+        try {
+          refreshCartCount();
+        } catch (error) {
+          showToast(error.message || "تعذر تحديث عدد المنتجات في السلة");
+        }
+      });
+      window.addEventListener("storage", (event) => {
+        if (event.key !== "ku-ku-cart-items" && event.key !== "ku-ku-cart-count") return;
+        try {
+          refreshCartCount();
+        } catch (error) {
+          showToast(error.message || "تعذر تحديث عدد المنتجات في السلة");
+        }
+      });
+      window.addEventListener("pageshow", () => {
+        try {
+          refreshCartCount();
+        } catch (error) {
+          showToast(error.message || "تعذر تحديث عدد المنتجات في السلة");
+        }
+      });
+
+      function productMarkup(product, index) {
+        const offer = product.discount
+          ? `<span class="discount">OFF ${product.discount}</span>`
+          : "";
+        const price = product.oldPrice
+          ? `<span class="old-price">${product.oldPrice.toFixed(3)}</span><span class="sale">KWD ${product.price.toFixed(3)}</span>`
+          : `KWD ${product.price.toFixed(3)}`;
+        const image = product.image
+          ? `<img class="product-source-image${product.isolated || product.category !== "beef" ? " isolated" : ""}" src="${product.image}" alt="${product.title}" loading="lazy" />`
+          : product.visual
+          ? `<div class="food-photo ${product.visual}" aria-hidden="true">
+              <span class="food-cut"></span><span class="food-cut"></span><span class="food-cut"></span><span class="food-cut"></span>
+              <span class="food-caption">${product.fresh ? "FRESH" : "دجاج طازج"}</span>
+            </div>`
+          : `<div class="pack ${product.color} ${product.whole ? "pack-whole" : ""}" aria-hidden="true">
+              <div class="pack-brand">${product.brand}<br />اليوم</div>
+              <span class="pack-subtitle">دجاج طازج • FRESH CHICKEN</span>
+              <div class="chicken-art"></div>
+              <span class="pack-seal">طازج يومياً &nbsp; • &nbsp; ${index % 2 ? "800" : "450"} جم</span>
+            </div>`;
+        const detailUrl = new URL("./calculator.html", window.location.href);
+        detailUrl.searchParams.set("title", product.title);
+        detailUrl.searchParams.set("brand", product.brand);
+        detailUrl.searchParams.set("price", product.price);
+        detailUrl.searchParams.set("category", product.category || "chicken");
+        detailUrl.searchParams.set("productId", product.id);
+        if (product.oldPrice) detailUrl.searchParams.set("oldPrice", product.oldPrice);
+        if (product.discount) detailUrl.searchParams.set("discount", product.discount);
+        if (product.image) detailUrl.searchParams.set("image", product.image);
+
+        return `
+          <article class="product-card" data-index="${index}">
+            <div class="product-image">
+              ${offer}
+              <a class="product-image-link" href="${detailUrl.href}" aria-label="عرض تفاصيل ${product.title}">${image}</a>
+              <button class="favorite" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">♥</button>
+              <button class="add-button" type="button" aria-label="أضف ${product.title} إلى السلة">+</button>
+            </div>
+            <div class="product-info">
+              <span class="brand-tag">${product.brand}</span>
+              <h2 class="product-title"><a class="product-detail-link" href="${detailUrl.href}">${product.title}</a></h2>
+              <div class="price">${price}</div>
+            </div>
+          </article>`;
+      }
+
+      function renderProducts() {
+        const query = mainSearch.value.trim().toLocaleLowerCase("ar");
+        const checkedTypes = [...document.querySelectorAll("[data-type]:checked")].map((input) => input.value);
+        const checkedBrands = [...document.querySelectorAll("[data-brand]:checked")].map((input) => input.dataset.brand);
+        const checkedPrices = [...document.querySelectorAll("[data-price]:checked")].map((input) => input.dataset.price);
+        const checkedPromos = [...document.querySelectorAll("[data-promo]:checked")];
+        const checkedWeights = [...document.querySelectorAll("[data-weight]:checked")].map((input) => Number(input.dataset.weight));
+        const checkedMeatTypes = [...document.querySelectorAll("[data-meat-type]:checked")].map((input) => input.dataset.meatType);
+        const checkedCuts = [...document.querySelectorAll("[data-cut]:checked")].map((input) => input.dataset.cut);
+        let visible = products
+          .map((product, index) => ({ product, index }))
+          .filter(({ product }) => {
+            const matchesQuery = `${product.brand} ${product.title}`.toLocaleLowerCase("ar").includes(query);
+            const productCategory = product.category || "chicken";
+            const matchesCategory = activeCategory === "all" || productCategory === activeCategory;
+            const matchesType = checkedTypes.length === 0 || checkedTypes.includes(product.beefType || product.type);
+            const matchesBrand = checkedBrands.length === 0 || checkedBrands.includes(product.brand);
+            const matchesPrice = checkedPrices.length === 0 || checkedPrices.some((range) => {
+              const [min, max] = range.split("-").map(Number);
+              return product.price >= min && product.price < max;
+            });
+            const matchesPromo = checkedPromos.length === 0 || Boolean(product.discount);
+            const matchesWeight = checkedWeights.length === 0 || checkedWeights.includes(product.weight);
+            const matchesMeatType = checkedMeatTypes.length === 0 || checkedMeatTypes.includes(product.meatType);
+            const matchesCut = checkedCuts.length === 0 || checkedCuts.includes(product.cut);
+            return matchesQuery && matchesCategory && matchesType && matchesBrand && matchesPrice && matchesPromo && matchesWeight && matchesMeatType && matchesCut;
+          });
+
+        if (sortSelect.value === "price-asc") visible.sort((a, b) => a.product.price - b.product.price);
+        if (sortSelect.value === "price-desc") visible.sort((a, b) => b.product.price - a.product.price);
+
+        productGrid.innerHTML = visible.length
+          ? visible.map(({ product, index }) => productMarkup(product, index)).join("")
+          : '<p class="empty-state">لا توجد منتجات مطابقة. جرّب تغيير البحث أو الفلاتر.</p>';
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 2000);
+      }
+
+      productGrid.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        if (button.classList.contains("add-button")) {
+          try {
+            const productIndex = Number(button.closest(".product-card").dataset.index);
+            const product = products[productIndex];
+            window.productCart.add({
+              ...product,
+              category: product.category || "chicken",
+            }, 1);
+            cartCount = window.productCart.getCount(window.productCart.getItems());
+            const count = document.getElementById("cart-count");
+            count.hidden = false;
+            count.textContent = cartCount;
+            showToast("تمت إضافة المنتج إلى السلة");
+          } catch (error) {
+            showToast(error.message || "تعذرت إضافة المنتج إلى السلة");
+          }
+        } else if (button.classList.contains("favorite")) {
+          const selected = button.classList.toggle("selected");
+          button.setAttribute("aria-pressed", String(selected));
+          showToast(selected ? "أضيف المنتج إلى المفضلة" : "أزيل المنتج من المفضلة");
+        }
+      });
+
+      mainSearch.addEventListener("input", renderProducts);
+      sortSelect.addEventListener("change", renderProducts);
+      document.querySelectorAll("[data-type], [data-brand], [data-price], [data-promo], [data-weight], [data-meat-type], [data-cut]").forEach((input) => {
+        input.addEventListener("change", renderProducts);
+      });
+      document.querySelectorAll(".filter-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          activeCategory = chip.dataset.category;
+          document.querySelectorAll("[data-type], [data-brand], [data-price], [data-promo], [data-weight], [data-meat-type], [data-cut]").forEach((input) => {
+            input.checked = false;
+          });
+          document.querySelectorAll(".filter-chip").forEach((item) => item.classList.toggle("active", item === chip));
+          updateCategoryFilters();
+          renderProducts();
+        });
+      });
+      document.getElementById("clear-filters").addEventListener("click", () => {
+        mainSearch.value = "";
+        filterSearch.value = "";
+        activeCategory = "all";
+        document.querySelectorAll("[data-type], [data-brand], [data-price], [data-promo], [data-weight], [data-meat-type], [data-cut]").forEach((input) => {
+          input.checked = false;
+        });
+        document.querySelectorAll(".filter-chip").forEach((item) => {
+          item.classList.toggle("active", item.dataset.category === "all");
+        });
+        updateCategoryFilters();
+        renderProducts();
+      });
+
+      filterSearch.addEventListener("input", () => {
+        const query = filterSearch.value.trim().toLocaleLowerCase("ar");
+        document.querySelectorAll(".filter-option").forEach((option) => {
+          option.hidden = !option.textContent.toLocaleLowerCase("ar").includes(query);
+        });
+      });
+      function updateCategoryFilters() {
+        document.querySelectorAll("[data-filter-category]").forEach((option) => {
+          option.hidden = activeCategory !== "all" && option.dataset.filterCategory !== activeCategory;
+        });
+        document.querySelectorAll("[data-group-category]").forEach((group) => {
+          group.hidden = activeCategory !== "all" && group.dataset.groupCategory !== activeCategory;
+        });
+      }
+
+      document.querySelector(".show-all").addEventListener("click", () => {
+        document.querySelectorAll(".filter-option").forEach((option) => {
+          option.hidden = false;
+        });
+      });
+      document.getElementById("top-action").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      document.getElementById("chat-action").addEventListener("click", () => {
+        showToast("أضف رقم واتساب المتجر لربط خدمة المحادثة");
+      });
+
+      updateCategoryFilters();
+      renderProducts();
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>

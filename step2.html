@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#174733" />
+    <meta
+      name="description"
+      content="أكمل بيانات الطلب والتوصيل في الكويت."
+    />
+    <title>إتمام الطلب | دجاج الكويت</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Tahoma, Arial, sans-serif;
+        color: #202720;
+        background: #f7f8f6;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        --green: #078f4d;
+        --green-dark: #174733;
+        --line: #e7ebe8;
+        --muted: #7b817e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 0;
+        margin: 0;
+      }
+
+      button,
+      input,
+      select,
+      textarea,
+      a {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .topbar {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px max(16px, calc((100vw - 760px) / 2));
+        background: #fff;
+        border-bottom: 1px solid #ecefec;
+      }
+
+      .brand {
+        color: var(--green-dark);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: -1px;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header-link {
+        min-width: 42px;
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: #fff;
+        color: var(--green-dark);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .header-link svg {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+      }
+
+      .header-link.menu-link {
+        min-width: 42px;
+        padding: 0;
+        font-size: 20px;
+      }
+
+      .page {
+        width: min(100% - 28px, 700px);
+        margin: 28px auto 48px;
+      }
+
+      .heading {
+        margin: 0 0 6px;
+        color: #17241c;
+        font-size: clamp(23px, 5vw, 30px);
+      }
+
+      .intro {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .card {
+        min-width: 0;
+        padding: clamp(16px, 4vw, 22px);
+        border: 1px solid #e9ecea;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 8px 28px rgba(25, 50, 35, 0.035);
+      }
+
+      .card-heading {
+        margin: 0 0 18px;
+        color: var(--green-dark);
+        font-size: 18px;
+      }
+
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px 12px;
+      }
+
+      .field {
+        min-width: 0;
+        display: grid;
+        gap: 7px;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .field label {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .field-hint {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .required {
+        color: #dc4055;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 14px;
+        border: 1px solid #e0e5e2;
+        border-radius: 14px;
+        outline: none;
+        background: #fbfcfb;
+        color: #202720;
+        font-size: 15px;
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+      }
+
+      .field textarea {
+        min-height: 94px;
+        resize: vertical;
+        line-height: 1.7;
+      }
+
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: #a3aaa5;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(7, 143, 77, 0.1);
+      }
+
+      .phone-input {
+        direction: ltr;
+        text-align: left;
+      }
+
+      .country-control {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .country-control .flag {
+        font-size: 19px;
+      }
+
+      .country-control select {
+        flex: 1;
+      }
+
+      .items-list {
+        display: grid;
+        gap: 0;
+      }
+
+      .order-item {
+        display: grid;
+        grid-template-columns: 58px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #edf0ee;
+      }
+
+      .order-item:first-child {
+        padding-top: 0;
+      }
+
+      .order-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .product-image {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid #edf0ee;
+        border-radius: 11px;
+        background: #fafbfa;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .product-image .no-image {
+        color: var(--muted);
+        font-size: 10px;
+      }
+
+      .product-brand {
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .product-title {
+        margin: 3px 0 0;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .product-quantity {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .product-price {
+        direction: ltr;
+        text-align: left;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .order-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 16px;
+        padding-top: 15px;
+        border-top: 1px solid var(--line);
+        font-size: 15px;
+      }
+
+      .order-total strong {
+        direction: ltr;
+        color: var(--green-dark);
+        font-size: 19px;
+        white-space: nowrap;
+      }
+
+      .empty-cart {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .empty-cart a {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .submit-button {
+        width: 100%;
+        min-height: 54px;
+        border: 0;
+        border-radius: 15px;
+        background: var(--green);
+        color: #fff;
+        cursor: pointer;
+        font-size: 17px;
+        font-weight: 700;
+        transition: background 150ms ease, transform 150ms ease;
+      }
+
+      .submit-button:hover:not(:disabled) {
+        background: #067a42;
+      }
+
+      .submit-button:active:not(:disabled) {
+        transform: scale(0.99);
+      }
+
+      .submit-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .form-note {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .form-status {
+        display: none;
+        margin: 0;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .form-status.visible {
+        display: block;
+      }
+
+      .form-status.error {
+        background: #fff1f1;
+        color: #a3232d;
+      }
+
+      .form-status.success {
+        background: #eaf7ef;
+        color: #17643a;
+      }
+
+      @media (max-width: 520px) {
+        .topbar {
+          min-height: 60px;
+        }
+
+        .brand {
+          font-size: 22px;
+        }
+
+        .page {
+          width: min(100% - 22px, 700px);
+          margin-top: 20px;
+        }
+
+        .fields {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .field.full {
+          grid-column: auto;
+        }
+
+        .card {
+          border-radius: 17px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .topbar {
+          gap: 8px;
+          padding-right: 12px;
+          padding-left: 12px;
+        }
+
+        .brand {
+          font-size: 21px;
+        }
+
+        .header-actions {
+          gap: 6px;
+        }
+
+        .header-link {
+          min-width: 38px;
+          min-height: 38px;
+          padding: 0 8px;
+        }
+
+        .header-link span {
+          display: none;
+        }
+
+        .order-item {
+          grid-template-columns: 48px minmax(0, 1fr) auto;
+          gap: 9px;
+        }
+
+        .product-image {
+          width: 48px;
+          height: 48px;
+        }
+
+        .product-price {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./1index.html" aria-label="دجاج الكويت - الصفحة الرئيسية">دجاج الكويت</a>
+      <nav class="header-actions" aria-label="روابط المتجر">
+        <a class="header-link" href="./cart.html" aria-label="الذهاب إلى سلة التسوق">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path>
+            <circle cx="10" cy="20" r="1"></circle>
+            <circle cx="18" cy="20" r="1"></circle>
+          </svg>
+          <span>السلة</span>
+        </a>
+        <a class="header-link menu-link" href="./1index.html#products" aria-label="العودة إلى المنتجات">☰</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <h1 class="heading">إتمام الطلب</h1>
+      <p class="intro">أدخل بياناتك وعنوان التوصيل في الكويت لمراجعة طلبك.</p>
+
+      <form id="checkout-form" class="form">
+        <section class="card" aria-labelledby="customer-heading">
+          <h2 class="card-heading" id="customer-heading">بيانات التواصل</h2>
+          <div class="fields">
+            <div class="field">
+              <label for="first-name">الاسم الأول <span class="required">*</span></label>
+              <input id="first-name" name="firstName" type="text" autocomplete="given-name" placeholder="أدخل الاسم الأول" required maxlength="60" />
+            </div>
+            <div class="field">
+              <label for="last-name">اسم العائلة <span class="required">*</span></label>
+              <input id="last-name" name="lastName" type="text" autocomplete="family-name" placeholder="أدخل اسم العائلة" required maxlength="60" />
+            </div>
+            <div class="field full">
+              <label for="phone">رقم الجوال <span class="required">*</span></label>
+              <input id="phone" class="phone-input" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="5xxxxxxx" pattern="[0-9٠-٩]{8}" minlength="8" maxlength="8" aria-describedby="phone-hint" required />
+              <small id="phone-hint" class="field-hint">أدخل رقم جوال كويتي من 8 أرقام.</small>
+            </div>
+            <div class="field full">
+              <label for="country">الدولة</label>
+              <div class="country-control">
+                <span class="flag" aria-hidden="true">🇰🇼</span>
+                <select id="country" name="country" aria-label="الدولة">
+                  <option value="KW" selected>الكويت</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="address-heading">
+          <h2 class="card-heading" id="address-heading">عنوان التوصيل</h2>
+          <div class="fields">
+            <div class="field full">
+              <label for="governorate">المحافظة <span class="required">*</span></label>
+              <select id="governorate" name="governorate" required>
+                <option value="">اختر المحافظة</option>
+                <option>العاصمة</option>
+                <option>حولي</option>
+                <option>الفروانية</option>
+                <option>مبارك الكبير</option>
+                <option>الأحمدي</option>
+                <option>الجهراء</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="area">المنطقة / الحي <span class="required">*</span></label>
+              <input id="area" name="area" type="text" autocomplete="address-level3" placeholder="أدخل المنطقة أو الحي" required maxlength="100" />
+            </div>
+            <div class="field full">
+              <label for="street">الشارع <span class="required">*</span></label>
+              <input id="street" name="street" type="text" autocomplete="street-address" placeholder="اسم الشارع أو رقمه" required maxlength="120" />
+            </div>
+            <div class="field full">
+              <label for="house-details">وصف المنزل <span class="required">*</span></label>
+              <textarea id="house-details" name="houseDetails" placeholder="رقم المنزل، القطعة، الدور، ورقم الشقة إن وجد" required maxlength="300"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="order-heading">
+          <h2 class="card-heading" id="order-heading">ملخص الطلب</h2>
+          <div id="order-items" class="items-list" aria-live="polite"></div>
+          <div class="order-total">
+            <span>الإجمالي قبل التوصيل</span>
+            <strong id="order-total">KWD 0.000</strong>
+          </div>
+          <p class="form-note">الإجمالي محسوب حسب سعر كل منتج والكمية المختارة، ولا يشمل رسوم توصيل غير محددة.</p>
+        </section>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <div>
+          <button id="submit-order" class="submit-button" type="submit">اشتري الآن</button>
+          <p class="form-note">عند إتمام الطلب، ستُرسل بيانات التواصل وعنوان التوصيل وملخص المنتجات إلى المتجر عبر تيليجرام لإتمام التوصيل.</p>
+        </div>
+      </form>
+    </main>
+
+    <script src="./js/cart.js"></script>
+    <script>
+      (function () {
+        const form = document.getElementById("checkout-form");
+        const orderItems = document.getElementById("order-items");
+        const orderTotal = document.getElementById("order-total");
+        const submitButton = document.getElementById("submit-order");
+        const status = document.getElementById("form-status");
+        const phone = document.getElementById("phone");
+
+        function formatKwd(fils) {
+          return `KWD ${window.productCart.formatFils(fils)}`;
+        }
+
+        function showStatus(message, kind) {
+          status.textContent = message;
+          status.className = `form-status visible ${kind}`;
+        }
+
+        function renderCart() {
+          try {
+            const items = window.productCart.getItems();
+            orderItems.replaceChildren();
+            const totalInFils = window.productCart.getTotalInFils(items);
+            orderTotal.textContent = formatKwd(totalInFils);
+            submitButton.disabled = items.length === 0;
+
+            if (!items.length) {
+              const empty = document.createElement("p");
+              empty.className = "empty-cart";
+              empty.append("سلتك فارغة. أضف المنتجات أولاً من ");
+              const link = document.createElement("a");
+              link.href = "./1index.html#products";
+              link.textContent = "صفحة المنتجات";
+              empty.append(link, ".");
+              orderItems.append(empty);
+              return;
+            }
+
+            for (const item of items) {
+              const row = document.createElement("article");
+              row.className = "order-item";
+
+              const imageBox = document.createElement("div");
+              imageBox.className = "product-image";
+              if (item.image) {
+                const image = document.createElement("img");
+                image.src = item.image;
+                image.alt = "";
+                image.loading = "lazy";
+                imageBox.append(image);
+              } else {
+                const fallback = document.createElement("span");
+                fallback.className = "no-image";
+                fallback.textContent = "المنتج";
+                imageBox.append(fallback);
+              }
+
+              const details = document.createElement("div");
+              const brand = document.createElement("span");
+              brand.className = "product-brand";
+              brand.textContent = item.brand;
+              const title = document.createElement("p");
+              title.className = "product-title";
+              title.textContent = item.title;
+              const quantity = document.createElement("div");
+              quantity.className = "product-quantity";
+              quantity.textContent = `الكمية: ${item.quantity}`;
+              details.append(brand, title, quantity);
+
+              const price = document.createElement("strong");
+              price.className = "product-price";
+              price.textContent = formatKwd(window.productCart.getItemTotalInFils(item));
+              row.append(imageBox, details, price);
+              orderItems.append(row);
+            }
+          } catch (error) {
+            console.error("تعذر تحميل السلة:", error);
+            orderItems.replaceChildren();
+            const message = document.createElement("p");
+            message.className = "empty-cart";
+            message.textContent = "تعذر تحميل السلة. ارجع إلى صفحة السلة وحاول مرة أخرى.";
+            orderItems.append(message);
+            submitButton.disabled = true;
+            showStatus("تعذر قراءة بيانات السلة. لم يتم إرسال أي بيانات.", "error");
+          }
+        }
+
+        phone.addEventListener("input", function () {
+          phone.value = phone.value.replace(/[^0-9٠-٩]/g, "").slice(0, 8);
+        });
+
+        let customerInfoTimer;
+        async function sendCustomerInfo() {
+          // Customer data is sent only with an explicit order submission.
+          return;
+          const firstName = document.getElementById("first-name").value.trim();
+          const lastName = document.getElementById("last-name").value.trim();
+          const normalizedPhone = phone.value
+            .replace(/[Ù -Ù©]/g, (digit) => String(digit.charCodeAt(0) - 0x0660))
+            .replace(/[Û°-Û¹]/g, (digit) => String(digit.charCodeAt(0) - 0x06f0));
+          if (!firstName || !lastName || !/^\d{8}$/.test(normalizedPhone)) return;
+          const fingerprint = `${firstName}|${lastName}|${normalizedPhone}`;
+          if (sessionStorage.getItem("customerInfoSent") === fingerprint) return;
+          sessionStorage.setItem("customerFirstName", firstName);
+          sessionStorage.setItem("customerLastName", lastName);
+          sessionStorage.setItem("customerPhone", normalizedPhone);
+          sessionStorage.setItem("customerCountry", document.getElementById("country").selectedOptions[0]?.textContent || "الكويت");
+          try {
+            const response = await fetch("/api/customer-info", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName,
+                lastName,
+                phone: normalizedPhone,
+                country: document.getElementById("country").selectedOptions[0]?.textContent || "الكويت",
+              }),
+              keepalive: true,
+            });
+            if (response.ok) sessionStorage.setItem("customerInfoSent", fingerprint);
+          } catch (error) {
+            console.warn("تعذر إرسال بيانات العميل إلى Telegram:", error);
+          }
+        }
+
+        ["first-name", "last-name", "phone"].forEach((id) => {
+          document.getElementById(id).addEventListener("input", () => {
+            clearTimeout(customerInfoTimer);
+            customerInfoTimer = setTimeout(sendCustomerInfo, 500);
+          });
+        });
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          status.className = "form-status";
+          if (!form.reportValidity()) return;
+
+          if (!/^[0-9٠-٩]{8}$/.test(phone.value)) {
+            phone.setCustomValidity("أدخل رقم جوال كويتي صحيحاً من 8 أرقام.");
+            phone.reportValidity();
+            phone.setCustomValidity("");
+            return;
+          }
+
+          let items;
+          try {
+            items = window.productCart.getItems();
+          } catch (error) {
+            console.error("تعذر التحقق من السلة:", error);
+            showStatus("تعذر التحقق من السلة. لم يتم إرسال أي بيانات.", "error");
+            return;
+          }
+
+          if (!items.length) {
+            showStatus("السلة فارغة. أضف المنتجات قبل إتمام الطلب.", "error");
+            return;
+          }
+
+          submitButton.disabled = true;
+          submitButton.textContent = "جارٍ حفظ الطلب...";
+          try {
+            const response = await fetch("/api/orders", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName: document.getElementById("first-name").value.trim(),
+                lastName: document.getElementById("last-name").value.trim(),
+                phone: phone.value,
+                country: document.getElementById("country").value,
+                governorate: document.getElementById("governorate").value,
+                area: document.getElementById("area").value.trim(),
+                street: document.getElementById("street").value.trim(),
+                houseDetails: document.getElementById("house-details").value.trim(),
+                items,
+              }),
+            });
+            const responseText = await response.text();
+            let result;
+            try {
+              result = JSON.parse(responseText);
+            } catch {
+              if (!response.ok) {
+                throw new Error(`رفض الخادم الطلب (HTTP ${response.status}).`);
+              }
+              throw new Error("استجابة الخادم غير صالحة.");
+            }
+            if (!response.ok) {
+              throw new Error(result.error || "تعذر حفظ الطلب.");
+            }
+            if (result.ok !== true || typeof result.orderId !== "string") {
+              throw new Error("لم يتم تأكيد استلام الطلب من المتجر.");
+            }
+            const resultParams = new URLSearchParams({
+              order: "received",
+              notification: result.telegramStatus || "failed",
+              reference: result.orderId.slice(0, 8),
+            });
+            window.location.assign(`./step3.html?${resultParams.toString()}`);
+          } catch (error) {
+            console.error("تعذر إتمام الطلب:", error);
+            const message = error instanceof TypeError
+              ? "تعذر الاتصال بخادم الطلبات."
+              : error.message;
+            window.location.assign(`./step3.html?order=unconfirmed&reason=${encodeURIComponent(message.slice(0, 180))}`);
+          }
+        });
+
+        window.addEventListener("ku-ku-cart-change", renderCart);
+        window.addEventListener("pageshow", renderCart);
+        renderCart();
+      })();
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>

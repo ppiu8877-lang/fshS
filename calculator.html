@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#174a37" />
+    <title>التنمية قطع دجاج مشكلة طازجة 800 جم | LuLu</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Tahoma, Arial, sans-serif;
+        color: #171a18;
+        background: #f6faef;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .topbar {
+        min-height: 55px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+        gap: 14px;
+        padding: 6px max(24px, calc((100vw - 1180px) / 2));
+        background: #174733;
+        color: white;
+      }
+
+      .logo {
+        color: white;
+        font-family: Georgia, serif;
+        font-size: 30px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: -2px;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .search {
+        display: none;
+        min-height: 36px;
+        align-items: center;
+        gap: 8px;
+        padding: 0 14px;
+        border-radius: 8px;
+        background: white;
+        color: #68716c;
+      }
+
+      .search input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #26332d;
+        font-size: 13px;
+      }
+
+      .search svg {
+        width: 19px;
+        flex: 0 0 auto;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+
+      .locale {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .header-button {
+        min-height: 32px;
+        padding: 0 13px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 7px;
+        background: #00ae60;
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .header-button.light {
+        border-color: #efefef;
+        background: white;
+        color: #e14735;
+      }
+
+      .locale {
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .locale .flag {
+        font-size: 16px;
+      }
+
+      .delivery-button {
+        min-height: 30px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 5px;
+        background: #ffcf00;
+        color: #27230b;
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .icon-button {
+        position: relative;
+        width: 29px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+      }
+
+      .icon-button svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -3px;
+        right: -2px;
+        min-width: 15px;
+        height: 15px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #00ae60;
+        color: #fff;
+        font-size: 9px;
+      }
+
+      .subnav {
+        min-height: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 5px max(24px, calc((100vw - 1180px) / 2));
+        border-bottom: 1px solid #e6e8e2;
+        background: #fff;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 25px);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nav-links a {
+        color: #27322d;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-links a:first-child {
+        padding: 7px 10px;
+        border-radius: 7px;
+        background: #e9f5ed;
+        color: #168753;
+      }
+
+      .nav-links .deals {
+        color: #c52e37;
+      }
+
+      .promo {
+        flex: 0 0 auto;
+        min-width: 146px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: #eef0f0;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .promo strong {
+        color: #111;
+        font-size: 18px;
+      }
+
+      .promo-code {
+        padding: 2px 8px;
+        border-radius: 5px;
+        background: #4695e3;
+        color: #fff;
+        font-size: 11px;
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .breadcrumb {
+        min-height: 31px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        overflow: hidden;
+        color: #378453;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .breadcrumb a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .product-layout {
+        display: grid;
+        grid-template-columns: minmax(250px, 1fr) minmax(300px, 1.15fr) 54px;
+        grid-template-areas: "quantity details gallery";
+        align-items: start;
+        gap: 18px;
+        padding-top: 1px;
+      }
+
+      .gallery {
+        grid-area: gallery;
+        width: min(100%, 370px);
+        justify-self: end;
+      }
+
+      .hero-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #fff;
+      }
+
+      .hero-image img {
+        width: 94%;
+        height: 94%;
+        object-fit: contain;
+      }
+
+      .hero-image img.catalog-image {
+        clip-path: inset(8%);
+      }
+
+      .thumbnails {
+        display: flex;
+        justify-content: flex-start;
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .thumbnail {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        padding: 3px;
+        overflow: hidden;
+        border: 1px solid #d8ddd8;
+        border-radius: 11px;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .thumbnail[aria-pressed="true"] {
+        border-color: #4b514d;
+        box-shadow: 0 0 0 1px #4b514d;
+      }
+
+      .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .product-info {
+        grid-area: details;
+        padding-top: 5px;
+      }
+
+      .product-tag {
+        display: inline-flex;
+        padding: 3px 7px;
+        border-radius: 4px;
+        background: #eef0e9;
+        color: #545b56;
+        font-size: 10px;
+      }
+
+      .product-title {
+        margin: 11px 0 16px;
+        font-size: clamp(18px, 2vw, 23px);
+        line-height: 1.6;
+      }
+
+      .price-panel {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 8px 12px;
+        border-radius: 14px;
+        background: #e5f3e5;
+        direction: ltr;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .purchase-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .purchase-button,
+      .cancel-button {
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .purchase-button {
+        background: #00a854;
+        color: #fff;
+      }
+
+      .purchase-button:hover {
+        background: #078f4d;
+      }
+
+      .cancel-button {
+        border-color: #d7ddd8;
+        background: #fff;
+        color: #454c47;
+        text-align: center;
+        text-decoration: none;
+        line-height: 40px;
+      }
+
+      .cancel-button:hover {
+        background: #f2f5f2;
+      }
+
+      .current-price {
+        color: #111;
+        font-size: 17px;
+      }
+
+      .old-price {
+        color: #818985;
+        font-size: 13px;
+        font-weight: 400;
+        text-decoration: line-through;
+      }
+
+      .discount {
+        padding: 4px 6px;
+        border-radius: 4px;
+        background: #ee1436;
+        color: white;
+        font-size: 10px;
+        direction: rtl;
+      }
+
+      .product-tools {
+        grid-area: quantity;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .quantity {
+        min-height: 40px;
+        flex: 1 1 220px;
+        display: grid;
+        grid-template-columns: 42px 1fr 42px;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #343a36;
+        border-radius: 13px;
+        background: #fff;
+      }
+
+      .quantity button,
+      .tool-button {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: #303834;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .quantity output {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .tool-button {
+        color: #666d69;
+      }
+
+      .tool-button.favorite[aria-pressed="true"] {
+        color: #e84b5f;
+      }
+
+      .toast {
+        position: fixed;
+        right: 50%;
+        bottom: 24px;
+        z-index: 2;
+        padding: 10px 16px;
+        border-radius: 9px;
+        background: #174a37;
+        color: white;
+        font-size: 13px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(50%, 10px);
+        transition: opacity 160ms ease, transform 160ms ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translate(50%, 0);
+      }
+
+      @media (min-width: 1000px) {
+        .product-layout {
+          grid-template-columns: minmax(240px, 1fr) minmax(380px, 1.15fr) minmax(300px, 370px);
+          grid-template-areas: "quantity details gallery";
+          gap: 20px;
+        }
+
+        .gallery {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .topbar {
+          grid-template-columns: auto auto auto;
+          gap: 8px;
+          padding: 7px 10px;
+        }
+
+        .header-actions {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: center;
+        }
+
+        .logo {
+          font-size: 25px;
+        }
+
+        .search {
+          min-height: 34px;
+          padding: 0 9px;
+        }
+
+        .header-button {
+          min-height: 29px;
+          padding: 0 10px;
+        }
+
+        .locale {
+          gap: 5px;
+          font-size: 10px;
+        }
+
+        .subnav {
+          min-height: 42px;
+          gap: 10px;
+          padding: 5px 10px;
+        }
+
+        .nav-links {
+          gap: 12px;
+        }
+
+        .nav-links a {
+          font-size: 10px;
+        }
+
+        .promo {
+          display: none;
+        }
+
+        .page {
+          width: min(100% - 24px, 520px);
+        }
+
+        .breadcrumb {
+          min-height: 35px;
+          font-size: 9px;
+        }
+
+        .product-layout {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "gallery"
+            "details"
+            "quantity";
+          gap: 12px;
+          padding-top: 5px;
+        }
+
+        .gallery {
+          width: 100%;
+          max-width: 430px;
+          justify-self: center;
+        }
+
+        .hero-image {
+          max-height: 390px;
+        }
+
+        .thumbnails {
+          justify-content: center;
+        }
+
+        .product-info {
+          padding: 0 2px;
+        }
+
+        .product-title {
+          margin: 8px 0 12px;
+          font-size: 19px;
+        }
+
+        .product-tools {
+          gap: 12px;
+        }
+
+        .quantity {
+          flex-basis: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <a class="logo" href="./1index.html" aria-label="LuLu الصفحة الرئيسية">LuLu</a>
+        <label class="search">
+          <input type="search" placeholder="ابحث عن أي شيء..." aria-label="ابحث عن المنتجات" />
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="7.2" stroke="currentColor" stroke-width="1.8" />
+            <path d="m16.2 16.2 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </label>
+        <div class="header-actions">
+          <a class="icon-button" href="./cart.html" aria-label="عرض سلة التسوق">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="20" r="1.3" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.3" fill="currentColor" />
+            </svg>
+            <span class="cart-count" id="detail-cart-count" hidden>0</span>
+          </a>
+          <button class="icon-button" type="button" aria-label="حسابي">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8" />
+              <path d="M5.5 20a6.5 6.5 0 0 1 13 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
+          <button class="header-button light" type="button">دقايق</button>
+          <button class="header-button" type="button">هايبر ماركت</button>
+        </div>
+        <div class="locale">
+          <span aria-label="العربية">AR</span>
+          <span class="flag" aria-label="الكويت">🇰🇼</span>
+          <button class="delivery-button" type="button" aria-label="خدمة التوصيل">توصيل</button>
+        </div>
+      </div>
+      <nav class="subnav" aria-label="التصنيفات الرئيسية">
+        <div class="nav-links">
+          <a href="./1index.html#products">كل التصنيفات</a>
+          <a href="./1index.html#products">بقالة</a>
+          <a href="./1index.html#products">عروض المنتجات الطازجة</a>
+          <a href="./1index.html#products">الإلكترونيات</a>
+          <a href="./1index.html#products">عروض المنزل والمطبخ</a>
+          <a class="deals" href="./1index.html#products">Deals ♥</a>
+        </div>
+        <div class="promo" aria-label="خصم 20 بالمئة باستخدام الرمز NEW">
+          <strong>20%</strong><span>off</span><span class="promo-code">NEW</span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page">
+      <nav class="breadcrumb" aria-label="مسار التنقل">
+        <a href="./1index.html">الرئيسية</a><span aria-hidden="true">›</span>
+        <a href="./1index.html#products">عروض المنتجات الطازجة</a><span aria-hidden="true">›</span>
+        <a href="./1index.html#products">اللحوم والدواجن الطازجة</a><span aria-hidden="true">›</span>
+        <a href="./1index.html#products">الدجاج الطازج</a>
+      </nav>
+
+      <section class="product-layout" aria-label="تفاصيل المنتج">
+        <div class="product-tools">
+          <div class="quantity" aria-label="الكمية">
+            <button type="button" data-quantity="increase" aria-label="زيادة الكمية">+</button>
+            <output id="quantity-value" aria-live="polite">1</output>
+            <button type="button" data-quantity="decrease" aria-label="تقليل الكمية">−</button>
+          </div>
+          <button class="tool-button" id="share-button" type="button" aria-label="مشاركة المنتج">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <path d="m8.7 10.7 6.6-4.4m-6.6 7.1 6.6 4.4" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <button class="tool-button favorite" id="favorite-button" type="button" aria-label="إضافة إلى المفضلة" aria-pressed="false">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true">
+              <path d="M20.8 4.7a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.5 1-1a5.5 5.5 0 0 0 0-7.8Z" />
+            </svg>
+          </button>
+        </div>
+
+        <section class="product-info">
+          <span class="product-tag">طازج</span>
+          <h1 class="product-title">التنمية قطع دجاج مشكلة طازجة 800 جم</h1>
+          <div class="price-panel" aria-label="السعر بعد الخصم 1.420 دينار كويتي، السعر السابق 1.775 دينار كويتي">
+            <span class="discount">خصم 20%</span>
+            <span class="old-price">KWD 1.775</span>
+            <strong class="current-price">KWD 1.420</strong>
+          </div>
+          <div class="purchase-actions">
+            <button class="purchase-button" id="purchase-button" type="button">شراء</button>
+            <a class="cancel-button" id="cancel-button" href="./1index.html#products">إلغاء</a>
+          </div>
+        </section>
+
+        <div class="gallery">
+          <div class="hero-image">
+            <img id="main-product-image" src="./assets/images/products/tanmiah-mixed-chicken-800g.jpg" alt="عبوة التنمية قطع دجاج مشكلة طازجة 800 جم" />
+          </div>
+          <div class="thumbnails" aria-label="صور المنتج">
+            <button class="thumbnail" type="button" data-image="./assets/images/products/tanmiah-mixed-chicken-label.jpg" aria-label="تكبير صورة ملصق العبوة" aria-pressed="false">
+              <img src="./assets/images/products/tanmiah-mixed-chicken-label.jpg" alt="" />
+            </button>
+            <button class="thumbnail" type="button" data-image="./assets/images/products/tanmiah-mixed-chicken-800g.jpg" aria-label="عرض صورة العبوة كاملة" aria-pressed="true">
+              <img src="./assets/images/products/tanmiah-mixed-chicken-800g.jpg" alt="" />
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./js/cart.js"></script>
+    <script>
+      const quantityValue = document.getElementById("quantity-value");
+      const toast = document.getElementById("toast");
+      let quantity = 1;
+      let toastTimer;
+
+      function refreshDetailCartCount() {
+        const cartItems = window.productCart.getItems();
+        const cartCount = window.productCart.getCount(cartItems);
+        const cartCountElement = document.getElementById("detail-cart-count");
+        cartCountElement.textContent = cartCount;
+        cartCountElement.hidden = cartCount === 0;
+        cartCountElement.setAttribute("aria-label", `${cartCount} منتجات في السلة`);
+      }
+
+      try {
+        refreshDetailCartCount();
+      } catch (error) {
+        showToast(error.message || "تعذر تحميل عدد المنتجات في السلة");
+      }
+      function refreshCartBadge() {
+        try {
+          refreshDetailCartCount();
+        } catch (error) {
+          showToast(error.message || "تعذر تحديث عدد المنتجات في السلة");
+        }
+      }
+      window.addEventListener("ku-ku-cart-change", refreshCartBadge);
+      window.addEventListener("pageshow", refreshCartBadge);
+      window.addEventListener("storage", (event) => {
+        if (event.key === "ku-ku-cart-items" || event.key === "ku-ku-cart-count") {
+          refreshCartBadge();
+        }
+      });
+
+      const productParams = new URLSearchParams(window.location.search);
+      const productTitle = productParams.get("title");
+      if (productTitle) {
+        const brand = productParams.get("brand") || "منتج طازج";
+        const category = productParams.get("category");
+        const currentPrice = Number(productParams.get("price"));
+        const oldPrice = Number(productParams.get("oldPrice"));
+        const discount = productParams.get("discount");
+        const image = productParams.get("image");
+        const titleElement = document.querySelector(".product-title");
+        const tagElement = document.querySelector(".product-tag");
+        const pricePanel = document.querySelector(".price-panel");
+        const discountElement = pricePanel.querySelector(".discount");
+        const oldPriceElement = pricePanel.querySelector(".old-price");
+        const currentPriceElement = pricePanel.querySelector(".current-price");
+        const imageElement = document.getElementById("main-product-image");
+
+        titleElement.textContent = productTitle;
+        tagElement.textContent = brand;
+        document.title = `${productTitle} | LuLu`;
+        currentPriceElement.textContent = Number.isFinite(currentPrice)
+          ? `KWD ${currentPrice.toFixed(3)}`
+          : "السعر غير متوفر";
+        discountElement.hidden = !discount;
+        oldPriceElement.hidden = !Number.isFinite(oldPrice) || oldPrice <= 0;
+        if (discount) discountElement.textContent = `خصم ${discount}`;
+        if (Number.isFinite(oldPrice) && oldPrice > 0) {
+          oldPriceElement.textContent = `KWD ${oldPrice.toFixed(3)}`;
+        }
+        pricePanel.setAttribute(
+          "aria-label",
+          oldPriceElement.hidden
+            ? `السعر ${currentPriceElement.textContent}`
+            : `السعر بعد الخصم ${currentPriceElement.textContent}، السعر السابق ${oldPriceElement.textContent}`
+        );
+
+        if (image && /^\.\/assets\/images\/products\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)$/i.test(image)) {
+          imageElement.src = image;
+          imageElement.alt = `${brand} ${productTitle}`;
+          imageElement.classList.add("catalog-image");
+          document.querySelectorAll(".thumbnail").forEach((thumbnail) => {
+            thumbnail.dataset.image = image;
+            thumbnail.querySelector("img").src = image;
+          });
+        } else {
+          document.querySelector(".gallery").hidden = true;
+        }
+
+        const categoryLabels = {
+          beef: "لحوم الأبقار والعجول الطازجة",
+          dairy: "منتجات الألبان",
+          eggs: "البيض",
+        };
+        if (categoryLabels[category]) {
+          document.querySelector(".breadcrumb a:last-child").textContent = categoryLabels[category];
+        }
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 1800);
+      }
+
+      document.querySelector(".quantity").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-quantity]");
+        if (!button) return;
+        quantity = Math.max(1, quantity + (button.dataset.quantity === "increase" ? 1 : -1));
+        quantityValue.textContent = quantity;
+      });
+
+      document.getElementById("purchase-button").addEventListener("click", () => {
+        try {
+          window.productCart.add({
+            id: productParams.get("productId"),
+            title: document.querySelector(".product-title").textContent,
+            brand: document.querySelector(".product-tag").textContent,
+            category: ["chicken", "beef", "dairy", "eggs"].includes(productParams.get("category"))
+              ? productParams.get("category")
+              : "chicken",
+            price: Number(productParams.get("price")) || Number.parseFloat(document.querySelector(".current-price").textContent.replace(/[^\d.]/g, "")),
+            oldPrice: Number(productParams.get("oldPrice")),
+            discount: productParams.get("discount") || "",
+            image: productParams.get("image") || "",
+          }, quantity);
+          window.location.href = "./cart.html";
+        } catch (error) {
+          showToast(error.message || "تعذرت إضافة المنتج إلى السلة");
+        }
+      });
+
+      document.getElementById("cancel-button").addEventListener("click", (event) => {
+        if (document.referrer && new URL(document.referrer).origin === window.location.origin) {
+          event.preventDefault();
+          window.history.back();
+        }
+      });
+
+      document.querySelectorAll(".thumbnail").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.getElementById("main-product-image").src = button.dataset.image;
+          document.querySelectorAll(".thumbnail").forEach((thumbnail) => {
+            thumbnail.setAttribute("aria-pressed", String(thumbnail === button));
+          });
+        });
+      });
+
+      document.getElementById("favorite-button").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        const selected = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(selected));
+        showToast(selected ? "أضيف المنتج إلى المفضلة" : "أزيل المنتج من المفضلة");
+      });
+
+      document.getElementById("share-button").addEventListener("click", async () => {
+        try {
+          if (navigator.share) {
+            await navigator.share({ title: document.title, url: window.location.href });
+          } else if (navigator.clipboard) {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast("تم نسخ رابط المنتج");
+          } else {
+            showToast("رابط المنتج: " + window.location.href);
+          }
+        } catch (error) {
+          if (error.name !== "AbortError") showToast("تعذرت مشاركة رابط المنتج");
+        }
+      });
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>

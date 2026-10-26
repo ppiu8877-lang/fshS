@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fafafa" />
+    <meta
+      name="description"
+      content="اختر طريقة الدفع لطلبك من متجر دجاج الكويت."
+    />
+    <title>الدفع | دجاج الكويت</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Tahoma, Arial, sans-serif;
+        color: #17171a;
+        background: #fafafa;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        --pink: #ce2d91;
+        --pink-soft: #fae5f2;
+        --green: #74bd28;
+        --line: #e8e8e8;
+        --muted: #777;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      button,
+      a,
+      input,
+      summary {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      main {
+        width: min(100% - 24px, 425px);
+        margin: 0 auto;
+        padding: 5px 0 24px;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0 5px 8px;
+        font-size: 15px;
+        line-height: 1.5;
+        text-align: right;
+      }
+
+      .methods {
+        overflow: hidden;
+        border-bottom: 1px solid #f2d6e7;
+        background: #fff;
+      }
+
+      .method {
+        min-height: 48px;
+        display: grid;
+        grid-template-columns: 18px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+        margin: 0 9px;
+        padding: 6px 2px;
+        border-bottom: 1px solid #ededed;
+        cursor: pointer;
+      }
+
+      .method:has(input[value="knet"]) {
+        display: none;
+      }
+
+      .method:last-child {
+        border-bottom: 0;
+      }
+
+      .method input {
+        width: 13px;
+        height: 13px;
+        margin: 0;
+        justify-self: center;
+        accent-color: var(--pink);
+      }
+
+      .method-label {
+        min-width: 0;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .method-logos {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 7px;
+        direction: ltr;
+        white-space: nowrap;
+      }
+
+      .knet-logo {
+        width: 34px;
+        height: 22px;
+        display: block;
+        flex: 0 0 auto;
+      }
+
+      .knet-logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .credit-logos {
+        gap: 8px;
+      }
+
+      .amex-logo {
+        width: 28px;
+        height: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: #54b4e8;
+        font-family: Arial, sans-serif;
+        font-size: 5px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .mastercard-logo {
+        position: relative;
+        width: 28px;
+        height: 18px;
+        display: inline-block;
+      }
+
+      .mastercard-logo::before,
+      .mastercard-logo::after {
+        position: absolute;
+        top: 2px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .mastercard-logo::before {
+        left: 1px;
+        background: #eb4237;
+      }
+
+      .mastercard-logo::after {
+        right: 1px;
+        background: #f4a22b;
+        opacity: 0.92;
+      }
+
+      .visa-logo {
+        color: #153778;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      .paypal-logo {
+        color: #0969a9;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      .paypal-mark {
+        width: 33px;
+        height: 21px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        color: #075b9d;
+        background: #b9e5f7;
+        font-family: Arial, sans-serif;
+        font-size: 17px;
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      .order-summary {
+        margin-top: 6px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #f2d6e7;
+      }
+
+      .summary-toggle {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0 auto;
+        padding: 4px 8px 6px;
+        color: var(--pink);
+        font-size: 11px;
+        font-weight: 700;
+        list-style: none;
+        cursor: pointer;
+      }
+
+      .summary-toggle::-webkit-details-marker {
+        display: none;
+      }
+
+      .summary-chevron {
+        width: 7px;
+        height: 7px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        transition: transform 150ms ease;
+      }
+
+      .order-summary[open] .summary-chevron {
+        transform: rotate(225deg) translate(-1px, -1px);
+      }
+
+      .summary-items {
+        display: grid;
+        gap: 7px;
+        padding: 3px 13px 10px;
+        color: #666;
+        font-size: 11px;
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .total-row {
+        min-height: 57px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 2px 14px 0;
+      }
+
+      .total-label {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .total-value {
+        color: var(--green);
+        font-size: 16px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .pay-button {
+        min-height: 37px;
+        width: calc(100% - 28px);
+        display: block;
+        margin: 3px auto 0;
+        border: 0;
+        border-radius: 6px;
+        color: #fff;
+        background: var(--pink);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 150ms ease;
+      }
+
+      .pay-button:hover:not(:disabled) {
+        background: #b9277e;
+      }
+
+      .pay-button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+
+      .change-link {
+        display: block;
+        width: fit-content;
+        margin: 10px auto 0;
+        color: var(--pink);
+        font-size: 10px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .disclosure {
+        margin: 17px 10px 0;
+        color: #6e6e6e;
+        font-size: 9px;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .disclosure a {
+        color: var(--pink);
+      }
+
+      .status,
+      .cart-error {
+        margin: 12px 14px 0;
+        color: #784d0a;
+        font-size: 11px;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .status.maintenance {
+        color: #784d0a;
+      }
+
+      .status.available {
+        color: #286b35;
+      }
+
+      .status.submission-error {
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: #fff1f1;
+        color: #a3232d;
+      }
+
+      .status.submission-success {
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: #eaf7ef;
+        color: #17643a;
+      }
+
+      .status[hidden],
+      .cart-error[hidden] {
+        display: none;
+      }
+
+      @media (max-width: 350px) {
+        .method {
+          gap: 7px;
+          margin-inline: 7px;
+        }
+
+        .method-label {
+          font-size: 11px;
+        }
+
+        .method-logos {
+          gap: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>الدفع</h1>
+      <p id="order-submission-status" class="status" role="status" aria-live="polite" hidden></p>
+
+      <section class="methods" role="radiogroup" aria-label="طرق الدفع">
+        <label class="method">
+          <input type="radio" name="payment-method" value="knet" checked />
+          <span class="method-label">بطاقة السحب الآلي</span>
+          <span class="method-logos" aria-hidden="true">
+            <span class="knet-logo">
+              <svg viewBox="0 0 52 34" role="img">
+                <rect width="52" height="34" rx="1.5" fill="#1684bd" />
+                <text
+                  x="26"
+                  y="21"
+                  fill="#fff"
+                  font-family="Arial, sans-serif"
+                  font-size="15"
+                  font-style="italic"
+                  font-weight="900"
+                  letter-spacing="-1"
+                  text-anchor="middle"
+                >KNET</text>
+                <path d="M0 29c12-7 26-7 52-20v6C31 26 15 28 0 34z" fill="#f7d522" />
+              </svg>
+            </span>
+          </span>
+        </label>
+
+        <label class="method">
+          <input type="radio" name="payment-method" value="card" checked />
+          <span class="method-label">استخدم بطاقة ائتمان جديدة</span>
+          <span class="method-logos credit-logos" aria-hidden="true">
+            <span class="amex-logo">AMERICAN<br />EXPRESS</span>
+            <span class="mastercard-logo"></span>
+            <span class="visa-logo">VISA</span>
+          </span>
+        </label>
+
+        <label class="method">
+          <input type="radio" name="payment-method" value="paypal" />
+          <span class="method-label">Paypal</span>
+          <span class="method-logos" aria-hidden="true">
+            <span class="paypal-mark">P</span>
+          </span>
+        </label>
+      </section>
+
+      <details class="order-summary">
+        <summary class="summary-toggle">
+          <span class="summary-chevron" aria-hidden="true"></span>
+          ملخص
+        </summary>
+        <div id="summary-items" class="summary-items"></div>
+      </details>
+
+      <div class="total-row" aria-live="polite">
+        <span class="total-label">إجمالي</span>
+        <span id="order-total" class="total-value">— د.ك</span>
+      </div>
+
+      <p id="cart-error" class="cart-error" hidden></p>
+      <button id="pay-button" class="pay-button" type="button">اطلب الآن</button>
+      <p id="payment-status" class="status" role="status" aria-live="polite" hidden></p>
+      <a class="change-link" href="./cart.html">تعديل إعادة التعبئة</a>
+      <p class="disclosure">
+        بوابة الدفع غير مفعّلة حاليًا، ولن يتم خصم أي مبلغ.
+        <br />
+        بالضغط على «أعد التعبئة الآن» أنت توافق على
+        <a href="./cart.html">الشروط والأحكام</a>.
+      </p>
+    </main>
+
+    <script src="./js/cart.js"></script>
+    <script>
+      (function () {
+        const totalElement = document.getElementById("order-total");
+        const itemsElement = document.getElementById("summary-items");
+        const errorElement = document.getElementById("cart-error");
+        const statusElement = document.getElementById("payment-status");
+        const orderSubmissionStatus = document.getElementById("order-submission-status");
+        const payButton = document.getElementById("pay-button");
+        const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+        const orderParams = new URLSearchParams(window.location.search);
+
+        if (orderParams.get("order") === "received") {
+          const notification = orderParams.get("notification");
+          const reference = orderParams.get("reference");
+          if (notification === "sent") {
+            orderSubmissionStatus.textContent = `تم حفظ الطلب وإرسال إشعار المتجر بنجاح.${reference ? ` رقم الطلب: ${reference}` : ""}`;
+            orderSubmissionStatus.className = "status submission-success";
+          } else {
+            orderSubmissionStatus.textContent = `تم حفظ الطلب${reference ? ` برقم ${reference}` : ""}، لكن لم يصل إشعار Telegram إلى المتجر. يرجى التواصل مع المتجر للتأكد.`;
+            orderSubmissionStatus.className = "status submission-error";
+          }
+          orderSubmissionStatus.hidden = false;
+        } else if (orderParams.get("order") === "unconfirmed") {
+          const reason = orderParams.get("reason");
+          orderSubmissionStatus.textContent = `لم يتم تأكيد إرسال الطلب إلى المتجر${reason ? `: ${reason}` : ""} يرجى التواصل مع المتجر قبل المتابعة.`;
+          orderSubmissionStatus.className = "status submission-error";
+          orderSubmissionStatus.hidden = false;
+        }
+
+        function updatePaymentStatus() {
+          const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+          if (!selectedMethod) {
+            statusElement.hidden = true;
+            return;
+          }
+
+          if (selectedMethod.value === "knet") {
+            statusElement.textContent = "خدمة بطاقة السحب الآلي تحت الصيانة الآن. يرجى اختيار بطاقة ائتمان جديدة.";
+            statusElement.className = "status maintenance";
+            statusElement.hidden = false;
+            return;
+          }
+
+          if (selectedMethod.value === "card") {
+            statusElement.textContent = "اضغط «اطلب الآن» للانتقال إلى الصفحة التالية.";
+            statusElement.className = "status available";
+            statusElement.hidden = false;
+            return;
+          }
+
+          statusElement.textContent = "خدمة PayPal غير مفعّلة حاليًا. يرجى اختيار بطاقة ائتمان جديدة.";
+          statusElement.className = "status maintenance";
+          statusElement.hidden = false;
+        }
+
+        function renderTotal() {
+          try {
+            const items = window.productCart.getItems();
+            const totalInFils = window.productCart.getTotalInFils(items);
+            totalElement.textContent = `${window.productCart.formatFils(totalInFils)} د.ك`;
+            itemsElement.replaceChildren();
+
+            items.forEach(function (item) {
+              const row = document.createElement("div");
+              row.className = "summary-item";
+              const name = document.createElement("span");
+              name.textContent = `${item.title} × ${item.quantity}`;
+              const price = document.createElement("span");
+              price.textContent = `${window.productCart.formatFils(window.productCart.getItemTotalInFils(item))} د.ك`;
+              row.append(name, price);
+              itemsElement.append(row);
+            });
+
+            errorElement.hidden = items.length > 0;
+            errorElement.textContent = items.length ? "" : "السلة فارغة. أضف منتجات قبل إتمام الطلب.";
+            payButton.disabled = items.length === 0;
+            return items.length > 0;
+          } catch (error) {
+            console.error("تعذر قراءة السلة:", error);
+            totalElement.textContent = "— د.ك";
+            itemsElement.replaceChildren();
+            errorElement.hidden = false;
+            errorElement.textContent = "تعذر قراءة السلة. ارجع إلى صفحة السلة وحاول مرة أخرى.";
+            payButton.disabled = true;
+            return false;
+          }
+        }
+
+        payButton.addEventListener("click", function () {
+          if (!renderTotal()) return;
+          const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+          if (selectedMethod && selectedMethod.value === "card") {
+            window.location.href = "./knet.html";
+            return;
+          }
+          updatePaymentStatus();
+        });
+
+        async function notifyCardChoice() {
+          // Choosing a payment method must never send a Telegram notification.
+          return;
+          if (sessionStorage.getItem("paymentChoiceSent") === "1") return;
+          const customerPhone = sessionStorage.getItem("customerPhone");
+          if (!customerPhone || !/^\d{8}$/.test(customerPhone)) return;
+          try {
+            const response = await fetch("/api/payment-choice", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                firstName: sessionStorage.getItem("customerFirstName") || "غير معروف",
+                lastName: sessionStorage.getItem("customerLastName") || "غير معروف",
+                phone: customerPhone,
+                country: sessionStorage.getItem("customerCountry") || "غير معروف",
+                visitorStatus: localStorage.getItem("visitorStatus") || "غير معروف",
+                page: window.location.pathname,
+              }),
+              keepalive: true,
+            });
+            if (response.ok) sessionStorage.setItem("paymentChoiceSent", "1");
+          } catch (error) {
+            console.warn("تعذر إرسال اختيار بطاقة الائتمان إلى Telegram:", error);
+          }
+        }
+
+        paymentMethods.forEach(function (input) {
+          input.addEventListener("change", function () {
+            updatePaymentStatus();
+            if (input.value === "card" && input.checked) notifyCardChoice();
+          });
+        });
+
+        window.addEventListener("ku-ku-cart-change", renderTotal);
+        window.addEventListener("pageshow", renderTotal);
+        renderTotal();
+        updatePaymentStatus();
+      })();
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>

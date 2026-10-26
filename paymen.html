@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f8fa" />
+    <meta
+      name="description"
+      content="معاينة آمنة لواجهة الدفع. الدفع الإلكتروني غير مفعّل حاليًا."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>بيانات الدفع | دجاج الكويت</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Tahoma, Arial, sans-serif;
+        color: #34475a;
+        background: #f6f8fa;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        --blue: #14699f;
+        --line: #dfe6ed;
+        --muted: #77899a;
+        --orange: #ff9f24;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        padding: 18px 0 28px;
+      }
+
+      a {
+        font: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      main {
+        width: min(100% - 24px, 470px);
+        margin: 0 auto;
+        overflow: hidden;
+        border: 1px solid #e1e6eb;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(36, 66, 90, 0.06);
+      }
+
+      .top-stripe {
+        height: 7px;
+        background: linear-gradient(90deg, #288b6d, #67a36b 42%, #ff9f24);
+      }
+
+      .content {
+        padding: 15px clamp(14px, 4vw, 24px) 20px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        color: #56616d;
+        font-size: 16px;
+      }
+
+      .brands {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        direction: ltr;
+      }
+
+      .visa {
+        color: #173b80;
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      .mastercard {
+        position: relative;
+        width: 24px;
+        height: 16px;
+      }
+
+      .mastercard::before,
+      .mastercard::after {
+        position: absolute;
+        top: 1px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .mastercard::before {
+        left: 0;
+        background: #ed3c35;
+      }
+
+      .mastercard::after {
+        right: 0;
+        background: #f4a022;
+      }
+
+      .instruction {
+        margin: 10px 0 16px;
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.8;
+      }
+
+      .amount-card {
+        padding: 14px;
+        border: 1px solid #e5ebf1;
+        border-radius: 19px;
+        background: linear-gradient(180deg, #fbfcfe, #f5f8fb);
+      }
+
+      .amount-title {
+        margin: 0 0 8px;
+        color: var(--blue);
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .amount-row {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 14px;
+        border: 1px solid #ffd89f;
+        border-radius: 18px;
+        background: linear-gradient(100deg, #fff5df, #fff0d5);
+      }
+
+      .amount-label {
+        color: var(--blue);
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .amount-value {
+        color: #f09a22;
+        font-size: 17px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .amount-note {
+        margin: 9px 2px 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.8;
+      }
+
+      .fields-preview {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .payment-form {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .field-label,
+      .field-labels {
+        display: block;
+        margin-bottom: 6px;
+        color: #5b6672;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .placeholder {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        border: 1px solid #dce3ea;
+        border-radius: 15px;
+        color: #a5afb9;
+        background: #fcfcfd;
+        font-family: Arial, Tahoma, sans-serif;
+        font-size: 14px;
+        direction: ltr;
+      }
+
+      .payment-input {
+        min-height: 48px;
+        width: 100%;
+        padding: 0 15px;
+        border: 1px solid #dce3ea;
+        border-radius: 15px;
+        color: #202720;
+        background: #fcfcfd;
+        font: 14px Arial, Tahoma, sans-serif;
+      }
+
+      .payment-input:focus-visible {
+        outline: 3px solid #165e8c;
+        outline-offset: 2px;
+      }
+
+      .payment-input[dir="ltr"] {
+        text-align: left;
+      }
+
+      .validation-field {
+        position: relative;
+      }
+
+      .validation-field.is-valid .payment-input {
+        padding-right: 42px;
+        border-color: #2caf5b;
+      }
+
+      .validation-mark {
+        position: absolute;
+        top: 50%;
+        right: 14px;
+        color: #20a34a;
+        font: 700 20px Arial, sans-serif;
+        line-height: 1;
+        transform: translateY(-50%);
+      }
+
+      .validation-mark[hidden] {
+        display: none;
+      }
+
+      .card-number-field {
+        position: relative;
+      }
+
+      .card-number-field.has-brand .payment-input {
+        padding-left: 62px;
+      }
+
+      .card-brand-indicator {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+      }
+
+      .card-brand-indicator[hidden] {
+        display: none;
+      }
+
+      .card-brand-visa {
+        color: #173b80;
+        font: italic 900 12px Arial, sans-serif;
+      }
+
+      .card-brand-mastercard {
+        position: relative;
+        display: block;
+        width: 24px;
+        height: 16px;
+      }
+
+      .card-brand-mastercard::before,
+      .card-brand-mastercard::after {
+        position: absolute;
+        top: 1px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .card-brand-mastercard::before {
+        left: 0;
+        background: #ed3c35;
+      }
+
+      .card-brand-mastercard::after {
+        right: 0;
+        background: #f4a022;
+      }
+
+      .expiry-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .expiry-row .placeholder {
+        justify-content: center;
+      }
+
+      .demo-submit {
+        min-height: 44px;
+        width: 100%;
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 14px;
+        color: #fff;
+        background: linear-gradient(180deg, #ffad33, #ff9415);
+        font-size: 15px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .demo-submit:focus-visible {
+        outline: 3px solid #165e8c;
+        outline-offset: 3px;
+      }
+
+      .demo-status {
+        margin: 14px 0 0;
+        color: #286b35;
+        font-size: 12px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      .demo-status[hidden] {
+        display: none;
+      }
+
+      .expiry-labels {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .expiry-labels span:first-child {
+        direction: ltr;
+      }
+
+      .gateway-notice {
+        margin: 16px 0 0;
+        padding: 11px 12px;
+        border: 1px solid #f2d7a8;
+        border-radius: 10px;
+        color: #765213;
+        background: #fff9eb;
+        font-size: 11px;
+        line-height: 1.8;
+      }
+
+      .primary-link {
+        min-height: 44px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 17px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        color: #fff;
+        background: linear-gradient(180deg, #ffad33, #ff9415);
+        font-size: 15px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .primary-link:focus-visible,
+      .back-link:focus-visible {
+        outline: 3px solid #165e8c;
+        outline-offset: 3px;
+      }
+
+      .back-link {
+        display: block;
+        width: fit-content;
+        margin: 13px auto 0;
+        color: var(--blue);
+        font-size: 12px;
+        text-underline-offset: 3px;
+      }
+
+      .fine-print {
+        margin: 15px 0 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.8;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="top-stripe" aria-hidden="true"></div>
+      <div class="content">
+        <header class="header">
+          <h1>بيانات الدفع</h1>
+          <div class="brands" aria-label="Visa و Mastercard">
+            <span class="visa">VISA</span>
+            <span class="mastercard" aria-hidden="true"></span>
+          </div>
+        </header>
+
+        <p class="instruction">سيتم تنفيذ عملية الدفع من خلال الوسيلة المحددة أدناه.</p>
+
+        <section class="amount-card" aria-labelledby="amount-heading">
+          <h2 id="amount-heading" class="amount-title">الحسبة</h2>
+          <div class="amount-row">
+            <span class="amount-label">المجموع</span>
+            <span id="order-total" class="amount-value">— د.ك</span>
+          </div>
+          <p class="amount-note">وضع تجريبي فقط. استخدم بيانات وهمية؛ لا تُرسل بيانات البطاقة أو تُحفظ، ولن يُخصم أي مبلغ.</p>
+        </section>
+
+        <form id="demo-payment-form" class="payment-form">
+          <div class="validation-field">
+            <label class="field-label" for="cardholder-name">اسم حامل البطاقة</label>
+            <input class="payment-input" id="cardholder-name" name="cardholder" type="text" maxlength="60" autocomplete="off" required />
+            <span class="validation-mark" aria-hidden="true" hidden>✓</span>
+          </div>
+          <div class="validation-field card-number-field" id="card-number-field">
+            <label class="field-label" for="card-number">رقم البطاقة (تجريبي)</label>
+            <span id="card-brand-indicator" class="card-brand-indicator" aria-label="نوع البطاقة" hidden>
+              <span class="card-brand-visa" aria-hidden="true">VISA</span>
+              <span class="card-brand-mastercard" aria-hidden="true"></span>
+            </span>
+            <input class="payment-input" id="card-number" name="cardNumber" type="text" inputmode="numeric" dir="ltr" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off" pattern="[0-9 ]{19}" aria-describedby="demo-payment-note" required />
+            <span class="validation-mark" aria-hidden="true" hidden>✓</span>
+          </div>
+          <div>
+            <div class="expiry-labels field-labels">
+              <label for="card-cvv">CVV / CVC</label>
+              <label for="card-expiry">تاريخ انتهاء البطاقة</label>
+            </div>
+            <div class="expiry-row">
+              <div class="validation-field">
+                <input class="payment-input" id="card-cvv" name="cvv" type="password" inputmode="numeric" dir="ltr" maxlength="4" placeholder="***" autocomplete="off" pattern="[0-9]{3,4}" required />
+                <span class="validation-mark" aria-hidden="true" hidden>✓</span>
+              </div>
+              <div class="validation-field">
+                <input class="payment-input" id="card-expiry" name="expiry" type="text" inputmode="numeric" dir="ltr" maxlength="5" placeholder="MM/YY" autocomplete="off" pattern="(0[1-9]|1[0-2])/[0-9]{2}" required />
+                <span class="validation-mark" aria-hidden="true" hidden>✓</span>
+              </div>
+            </div>
+          </div>
+          <p id="demo-payment-note" class="gateway-notice">محاكاة واجهة فقط: لا تدخل بيانات بطاقة حقيقية. القيم المدخلة لا تُرسل ولا تُحفظ.</p>
+          <button class="demo-submit" type="submit">اختبار النموذج (بدون دفع)</button>
+        </form>
+        <p id="demo-payment-status" class="demo-status" role="status" aria-live="polite" hidden></p>
+
+        <a class="primary-link" href="./step3.html">العودة إلى طرق الدفع</a>
+        <a class="back-link" href="./cart.html">العودة إلى السلة</a>
+        <p class="fine-print">
+          أدخل بيانات البطاقة فقط في صفحة الدفع الرسمية التي يوفّرها مزود دفع معتمد.
+        </p>
+      </div>
+    </main>
+
+    <script src="./js/cart.js"></script>
+    <script>
+      (function () {
+        const totalElement = document.getElementById("order-total");
+        const paymentForm = document.getElementById("demo-payment-form");
+        const paymentStatus = document.getElementById("demo-payment-status");
+
+        const cardNumberField = document.getElementById("card-number-field");
+        const cardBrandIndicator = document.getElementById("card-brand-indicator");
+        const visaIndicator = cardBrandIndicator.querySelector(".card-brand-visa");
+        const mastercardIndicator = cardBrandIndicator.querySelector(".card-brand-mastercard");
+        const validatedFields = Array.from(paymentForm.querySelectorAll(".validation-field"));
+
+        function updateValidation(field) {
+          const input = field.querySelector(".payment-input");
+          const valid = input.value.trim().length > 0 && input.checkValidity();
+          field.classList.toggle("is-valid", valid);
+          field.querySelector(".validation-mark").hidden = !valid;
+        }
+
+        validatedFields.forEach(function (field) {
+          const input = field.querySelector(".payment-input");
+          input.addEventListener("input", function () {
+            updateValidation(field);
+          });
+          input.addEventListener("change", function () {
+            updateValidation(field);
+          });
+        });
+
+        document.getElementById("card-number").addEventListener("input", function (event) {
+          const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 16);
+          event.currentTarget.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ");
+          updateValidation(cardNumberField);
+          const brand = digits.startsWith("4") ? "visa" : digits.startsWith("5") ? "mastercard" : "";
+          cardNumberField.classList.toggle("has-brand", Boolean(brand));
+          cardBrandIndicator.hidden = !brand;
+          if (brand) cardBrandIndicator.setAttribute("aria-label", brand === "visa" ? "Visa" : "Mastercard");
+          else cardBrandIndicator.removeAttribute("aria-label");
+          visaIndicator.hidden = brand !== "visa";
+          mastercardIndicator.hidden = brand !== "mastercard";
+        });
+
+        paymentForm.addEventListener("reset", function () {
+          cardNumberField.classList.remove("has-brand");
+          cardBrandIndicator.hidden = true;
+          cardBrandIndicator.removeAttribute("aria-label");
+          visaIndicator.hidden = true;
+          mastercardIndicator.hidden = true;
+          validatedFields.forEach(function (field) {
+            field.classList.remove("is-valid");
+            field.querySelector(".validation-mark").hidden = true;
+          });
+        });
+
+        document.getElementById("card-expiry").addEventListener("input", function (event) {
+          const digits = event.currentTarget.value.replace(/\D/g, "").slice(0, 4);
+          event.currentTarget.value = digits.length > 2
+            ? `${digits.slice(0, 2)}/${digits.slice(2)}`
+            : digits;
+          updateValidation(event.currentTarget.closest(".validation-field"));
+        });
+
+        document.getElementById("card-cvv").addEventListener("input", function (event) {
+          event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 4);
+        });
+
+        paymentForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          if (!paymentForm.reportValidity()) return;
+          paymentForm.reset();
+          paymentStatus.textContent = "نجح اختبار النموذج فقط. لم يتم إرسال بيانات أو تنفيذ أي عملية دفع.";
+          paymentStatus.hidden = false;
+        });
+
+        try {
+          const items = window.productCart.getItems();
+          const totalInFils = window.productCart.getTotalInFils(items);
+          totalElement.textContent = `${window.productCart.formatFils(totalInFils)} د.ك`;
+        } catch (error) {
+          console.error("تعذر قراءة إجمالي السلة:", error);
+          totalElement.textContent = "تعذر تحميل الإجمالي";
+        }
+      })();
+    </script>
+    <script src="./js/visitor.js"></script>
+  </body>
+</html>
